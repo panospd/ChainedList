@@ -22,5 +22,51 @@ namespace LIghterLinkedList.tests.LighterListTests
             Assert.AreEqual(result[2], "3");
             Assert.AreEqual(result[3], "4");
         }
+
+        [Test]
+        public void WhenCalledWithObjectNodeValue_ReturnsStringRepresentationOfEachNode()
+        {
+            var sut = new LigherList<Person>(new List<Person> 
+                { 
+                    new Person("Panos", "Anastasiadis"),
+                    new Person("John", "Smith")
+                });
+
+            var result = sut.PrintList().ToList();
+
+            Assert.IsNotNull(result);
+            Assert.IsNotEmpty(result);
+            Assert.AreEqual(result.Count, 2);
+            Assert.AreEqual(result[0], "My name is Panos Anastasiadis");
+            Assert.AreEqual(result[1], "My name is John Smith");
+        }
+
+        [Test]
+        public void WhenListIsEmpty_ShouldReturnAnEmptyList()
+        {
+            var sut = new LigherList<int>(new List<int>());
+
+            var result = sut.PrintList();
+
+            Assert.IsNotNull(result);
+            Assert.IsEmpty(result);
+        }
+    }
+
+    public class Person
+    {
+        public Person(string name, string surname)
+        {
+            Name = name;
+            Surname = surname;
+        }
+
+        public string Name { get; }
+        public string Surname { get; }
+
+        public override string ToString()
+        {
+            return $"My name is {Name} {Surname}";
+        }
     }
 }
