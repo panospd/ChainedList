@@ -220,6 +220,24 @@ namespace LighterLinkedList.core
             return printed;
         }
 
+        /// <summary>
+        /// Returns a List<T> of all LighterNode<T> nodes
+        /// </summary>
+        public List<T> ToList()
+        {
+            var flatList = new List<T>();
+
+            var current = Head;
+
+            while (current != null)
+            {
+                flatList.Add(current.Value);
+                current = current.Next;
+            }
+
+            return flatList;
+        }
+
         private void InsertElementBefore(T element, LighterNode<T> target)
         {
             if (target == null)

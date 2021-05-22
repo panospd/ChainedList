@@ -1,44 +1,45 @@
 ﻿using LighterLinkedList.core;
 using NUnit.Framework;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace LIghterLinkedList.tests.LighterListTests
 {
-    public class PrintList
+    public class ToList
     {
         [Test]
-        public void WhenCalled_ReturnsStringRepresentationOfEachNode()
+        public void WhenCalled_ReturnsFlatList()
         {
             var sut = new LigherList<int>(new List<int> { 1, 2, 3, 4 });
 
-            var result = sut.PrintList().ToList();
+            var result = sut.ToList();
 
             Assert.IsNotNull(result);
             Assert.IsNotEmpty(result);
             Assert.AreEqual(result.Count, 4);
-            Assert.AreEqual(result[0], "1");
-            Assert.AreEqual(result[1], "2");
-            Assert.AreEqual(result[2], "3");
-            Assert.AreEqual(result[3], "4");
+            Assert.AreEqual(result[0], 1);
+            Assert.AreEqual(result[1], 2);
+            Assert.AreEqual(result[2], 3);
+            Assert.AreEqual(result[3], 4);
         }
 
         [Test]
-        public void WhenCalledWithObjectNodeValue_ReturnsStringRepresentationOfEachNode()
+        public void WhenCalledWithObjectNodeValue_ReturnsFlatList()
         {
-            var sut = new LigherList<Person>(new List<Person> 
-                { 
+            var sut = new LigherList<Person>(new List<Person>
+                {
                     new Person("Panos", "Anastasiadis"),
                     new Person("John", "Smith")
                 });
 
-            var result = sut.PrintList().ToList();
+            var result = sut.ToList();
 
             Assert.IsNotNull(result);
             Assert.IsNotEmpty(result);
             Assert.AreEqual(result.Count, 2);
-            Assert.AreEqual(result[0], "My name is Panos Anastasiadis");
-            Assert.AreEqual(result[1], "My name is John Smith");
+            Assert.AreEqual(result[0].Name, "Panos");
+            Assert.AreEqual(result[0].Surname, "Anastasiadis");
+            Assert.AreEqual(result[1].Name, "John");
+            Assert.AreEqual(result[1].Surname, "Smith");
         }
 
         [Test]
@@ -46,7 +47,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         {
             var sut = new LigherList<int>(new List<int>());
 
-            var result = sut.PrintList();
+            var result = sut.ToList();
 
             Assert.IsNotNull(result);
             Assert.IsEmpty(result);
