@@ -96,14 +96,13 @@ namespace LighterLinkedList.core
         /// <summary>
         /// Inserts element at the end of LighterList<LighterNode<T>>.        
         /// </summary>
-        public void InsertAtEnd(T value)
+        public void Insert(T value)
         {
             if (Last == null)
                 Head = new LighterNode<T>(value);
             else
                 Last.Next = new LighterNode<T>(value);
         }
-
 
         /// <summary>
         /// Inserts element after matching LighterNode<T> in LighterList<LighterNode<T>>. 
@@ -149,7 +148,7 @@ namespace LighterLinkedList.core
         {
             if (target == null)
             {
-                InsertAtEnd(element);
+                Insert(element);
                 return;
             }
 
@@ -161,7 +160,7 @@ namespace LighterLinkedList.core
         {
             if (target == null)
             {
-                InsertAtEnd(element);
+                Insert(element);
                 return;
             }
 

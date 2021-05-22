@@ -91,22 +91,22 @@ namespace LIghterLinkedList.tests
         }
 
         [Test]
-        public void InsertAtEnd_WhenListIsEmpty_ShouldInsertItem()
+        public void Insert_WhenListIsEmpty_ShouldInsertItem()
         {
             var sut = new LigherList<int>();
 
-            sut.InsertAtEnd(10);
+            sut.Insert(10);
 
             Assert.AreEqual(sut.First.Value, 10);
             Assert.IsNull(sut.First.Next);
         }
 
         [Test]
-        public void InsertAtEnd_WhenCalled_ShouldInsertItemAtEnd()
+        public void Insert_WhenCalled_ShouldInsertItemAtEnd()
         {
             var sut = new LigherList<int>(new List<int> { 1, 2, 4 });
 
-            sut.InsertAtEnd(10);
+            sut.Insert(10);
 
             var first = sut.First;
             var second = first.Next;
