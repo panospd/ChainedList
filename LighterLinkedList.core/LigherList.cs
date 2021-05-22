@@ -123,5 +123,39 @@ namespace LighterLinkedList.core
             node.Next = new LighterNode<T>(element);
             node.Next.Next = originalNext;
         }
+
+        /// <summary>
+        /// Inserts element before matching LighterNode<T> in LighterList<LighterNode<T>>. 
+        /// If no matching LighterNode<T> found, will insert at the end of LighterList<LighterNode<T>>   
+        /// </summary>
+        public void InsertBefore(T element, Func<LighterNode<T>, bool> predicate)
+        {
+            var node = Find(predicate);
+
+            if (node == null)
+            {
+                InsertAtEnd(element);
+                return;
+            }
+
+            var previous = FindPreviousOf(node);
+
+            var originalNext = previous.Next;
+            previous.Next = new LighterNode<T>(element);
+            previous.Next.Next = originalNext;
+        }
+
+        private LighterNode<T> FindPreviousOf(LighterNode<T> node)
+        {
+            var current = Head;
+
+            while (current != null)
+            {
+                if (current.Next == node)
+                    return current;
+            }
+
+            return null;
+        }
     }
 }
