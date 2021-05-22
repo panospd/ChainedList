@@ -111,17 +111,18 @@ namespace LighterLinkedList.core
         /// </summary>
         public void InsertAfter(T element, Func<LighterNode<T>, bool> predicate)
         {
-            var node = Find(predicate);
+            var target= Find(predicate);
+            InsertElementAfter(element, target);
+        }
 
-            if (node == null)
-            {
-                InsertAtEnd(element);
-                return;
-            }
-
-            var originalNext = node.Next;
-            node.Next = new LighterNode<T>(element);
-            node.Next.Next = originalNext;
+        /// <summary>
+        /// Inserts element after matching LighterNode<T> in LighterList<LighterNode<T>>. 
+        /// If no matching LighterNode<T> found, will insert at the end of LighterList<LighterNode<T>>   
+        /// </summary>
+        public void InsertAfter(T element, LighterNode<T> node)
+        {
+            var target = FindReferenceOf(node);
+            InsertElementAfter(element, target);
         }
 
         /// <summary>
@@ -130,19 +131,58 @@ namespace LighterLinkedList.core
         /// </summary>
         public void InsertBefore(T element, Func<LighterNode<T>, bool> predicate)
         {
-            var node = Find(predicate);
+            var target = Find(predicate);
+            InsertElementBefore(element, target);
+        }
 
-            if (node == null)
+        /// <summary>
+        /// Inserts element before specified LighterNode<T> in LighterList<LighterNode<T>>. 
+        /// If no matching LighterNode<T> found, will insert at the end of LighterList<LighterNode<T>>   
+        /// </summary>
+        public void InsertBefore(T element, LighterNode<T> node)
+        {
+            var target = FindReferenceOf(node);
+            InsertElementBefore(element, target);
+        }
+
+        private void InsertElementBefore(T element, LighterNode<T> target)
+        {
+            if (target == null)
             {
                 InsertAtEnd(element);
                 return;
             }
 
-            var previous = FindPreviousOf(node);
+            var previous = FindPreviousOf(target);
+            InsertElementAfter(element, previous);
+        }
 
-            var originalNext = previous.Next;
-            previous.Next = new LighterNode<T>(element);
-            previous.Next.Next = originalNext;
+        private void InsertElementAfter(T element, LighterNode<T> target)
+        {
+            if (target == null)
+            {
+                InsertAtEnd(element);
+                return;
+            }
+
+            var originalNext = target.Next;
+            target.Next = new LighterNode<T>(element);
+            target.Next.Next = originalNext;
+        }
+
+        private LighterNode<T> FindReferenceOf(LighterNode<T> node)
+        {
+            var current = Head;
+
+            while(current != null)
+            {
+                if (ReferenceEquals(current, node))
+                    return current;
+
+                current = current.Next;
+            }
+
+            return null;
         }
 
         private LighterNode<T> FindPreviousOf(LighterNode<T> node)
@@ -151,8 +191,10 @@ namespace LighterLinkedList.core
 
             while (current != null)
             {
-                if (current.Next == node)
+                if (ReferenceEquals(current.Next, node))
                     return current;
+
+                current = current.Next;
             }
 
             return null;
