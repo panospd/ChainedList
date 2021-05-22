@@ -82,7 +82,7 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
-        /// Finds the first element based on predicate If no node found will return null.
+        /// Inserts element as the head of LighterList.
         /// <param name="value">Item of type T to add to the list</param>
         /// </summary>
         public void InsertAtStart(T value)
@@ -93,6 +93,18 @@ namespace LighterLinkedList.core
             {
                 Next = current
             };
+        }
+
+        /// <summary>
+        /// Inserts element at the end of LighterList.
+        /// <param name="value">Item of type T to add to the list</param>
+        /// </summary>
+        public void InsertAtEnd(T value)
+        {
+            if (Last == null)
+                Head = new LighterNode<T>(value);
+            else
+                Last.Next = new LighterNode<T>(value);
         }
     }
 }
