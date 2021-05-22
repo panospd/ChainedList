@@ -64,7 +64,6 @@ namespace LighterLinkedList.core
 
         /// <summary>
         /// Finds the first element based on predicate If no node found will return null.
-        /// <param name="predicate">Predicate that accepts type of T</param>
         /// </summary>
         public LighterNode<T> Find(Func<LighterNode<T>, bool> predicate)
         {
@@ -82,8 +81,7 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
-        /// Inserts element as the head of LighterList.
-        /// <param name="value">Item of type T to add to the list</param>
+        /// Inserts element as the head of LighterList<LighterNode<T>>.        
         /// </summary>
         public void InsertAtStart(T value)
         {
@@ -96,8 +94,7 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
-        /// Inserts element at the end of LighterList.
-        /// <param name="value">Item of type T to add to the list</param>
+        /// Inserts element at the end of LighterList<LighterNode<T>>.        
         /// </summary>
         public void InsertAtEnd(T value)
         {
@@ -107,18 +104,23 @@ namespace LighterLinkedList.core
                 Last.Next = new LighterNode<T>(value);
         }
 
-        public void InsertAfter(T value, Func<LighterNode<T>, bool> predicate)
+
+        /// <summary>
+        /// Inserts element after matching LighterNode<T> in LighterList<LighterNode<T>>. 
+        /// If no matching LighterNode<T> found, will insert at the end of LighterList<LighterNode<T>>   
+        /// </summary>
+        public void InsertAfter(T element, Func<LighterNode<T>, bool> predicate)
         {
             var node = Find(predicate);
 
             if (node == null)
             {
-                InsertAtEnd(value);
+                InsertAtEnd(element);
                 return;
             }
 
             var originalNext = node.Next;
-            node.Next = new LighterNode<T>(value);
+            node.Next = new LighterNode<T>(element);
             node.Next.Next = originalNext;
         }
     }
