@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LighterLinkedList.core", "LighterLinkedList.core\LighterLinkedList.core.csproj", "{3C4B3559-DF12-4CB1-823C-454676F82BC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LIghterLinkedList.tests", "LIghterLinkedList.tests\LIghterLinkedList.tests.csproj", "{EEF5774F-F513-43B8-9B27-AECD93E15CD9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C4B3559-DF12-4CB1-823C-454676F82BC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C4B3559-DF12-4CB1-823C-454676F82BC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C4B3559-DF12-4CB1-823C-454676F82BC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C4B3559-DF12-4CB1-823C-454676F82BC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEF5774F-F513-43B8-9B27-AECD93E15CD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEF5774F-F513-43B8-9B27-AECD93E15CD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEF5774F-F513-43B8-9B27-AECD93E15CD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEF5774F-F513-43B8-9B27-AECD93E15CD9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DB8E3CA3-2419-4B29-8F4A-A5C7D8328FEA}
+	EndGlobalSection
+EndGlobal
