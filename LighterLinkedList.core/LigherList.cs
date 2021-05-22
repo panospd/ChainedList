@@ -42,6 +42,9 @@ namespace LighterLinkedList.core
         /// </summary>
         public LighterNode<T> Head => _head;
 
+        /// <summary>
+        /// True if LighterList<LighterNode<T>> is empty
+        /// </summary>
         public bool IsEmpty => _head == null;
 
         /// <summary>
