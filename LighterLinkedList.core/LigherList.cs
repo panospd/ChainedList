@@ -202,6 +202,24 @@ namespace LighterLinkedList.core
             InsertElementBefore(element, target);
         }
 
+        /// <summary>
+        /// Prints the string representation of each node in the list
+        /// </summary>
+        public IReadOnlyCollection<string> PrintList()
+        {
+            var printed = new List<string>();
+
+            var current = Head;
+
+            while(current != null)
+            {
+                printed.Add(current.Value.ToString());
+                current = current.Next;
+            }
+
+            return printed;
+        }
+
         private void InsertElementBefore(T element, LighterNode<T> target)
         {
             if (target == null)
