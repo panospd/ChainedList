@@ -287,5 +287,85 @@ namespace LIghterLinkedList.tests
             Assert.AreEqual(fourth.Value, 10);
             Assert.IsNull(fourth.Next);
         }
+
+        [Test]
+        public void RemoveFirst_WhenCalled_ShouldRemoveHead()
+        {
+            var sut = new LigherList<int>(new List<int> { 1, 2, 4, 10 });
+
+            sut.RemoveFirst();
+
+            var first = sut.First;
+            var second = first.Next;
+            var third = second.Next;
+            Assert.AreEqual(first.Value, 2);
+            Assert.AreEqual(second.Value, 4);
+            Assert.AreEqual(third.Value, 10);
+            Assert.IsNull(third.Next);
+        }
+
+        [Test]
+        public void Remove_WhenCalled_ShouldRemoveNode()
+        {
+            var sut = new LigherList<int>(new List<int> { 1, 2, 4, 10 });
+
+            sut.Remove(n => n.Value == 4);
+
+            var first = sut.First;
+            var second = first.Next;
+            var third = second.Next;
+            Assert.AreEqual(first.Value, 1);
+            Assert.AreEqual(second.Value, 2);
+            Assert.AreEqual(third.Value, 10);
+            Assert.IsNull(third.Next);
+        }
+
+        [Test]
+        public void Remove_WhenCalledAndMatchesHead_ShouldRemoveHead()
+        {
+            var sut = new LigherList<int>(new List<int> { 1, 2, 4, 10 });
+
+            sut.Remove(n => n.Value == 1);
+
+            var first = sut.First;
+            var second = first.Next;
+            var third = second.Next;
+            Assert.AreEqual(first.Value, 2);
+            Assert.AreEqual(second.Value, 4);
+            Assert.AreEqual(third.Value, 10);
+            Assert.IsNull(third.Next);
+        }
+
+        [Test]
+        public void Remove_WhenCalledWithRefNode_ShouldRemoveNode()
+        {
+            var sut = new LigherList<int>(new List<int> { 1, 2, 4, 10 });
+
+            sut.Remove(sut.First.Next);
+
+            var first = sut.First;
+            var second = first.Next;
+            var third = second.Next;
+            Assert.AreEqual(first.Value, 1);
+            Assert.AreEqual(second.Value, 4);
+            Assert.AreEqual(third.Value, 10);
+            Assert.IsNull(third.Next);
+        }
+
+        [Test]
+        public void Remove_WhenCalledWithRefNodeAndIsHead_ShouldRemoveHead()
+        {
+            var sut = new LigherList<int>(new List<int> { 1, 2, 4, 10 });
+
+            sut.Remove(sut.First);
+
+            var first = sut.First;
+            var second = first.Next;
+            var third = second.Next;
+            Assert.AreEqual(first.Value, 2);
+            Assert.AreEqual(second.Value, 4);
+            Assert.AreEqual(third.Value, 10);
+            Assert.IsNull(third.Next);
+        }
     }
 }

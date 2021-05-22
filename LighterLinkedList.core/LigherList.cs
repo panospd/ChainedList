@@ -5,16 +5,16 @@ namespace LighterLinkedList.core
 {
     public class LigherList<T>
     {
-        private LighterNode<T> Head { get; set; }
+        private LighterNode<T> _head = null;
 
         public LigherList()
         {
-            Head = null;
+            _head = null;
         }
 
         public LigherList(List<T> items)
         {
-            var current = Head;
+            var current = _head;
             LighterNode<T> previous = null;
 
             for (int i = 0; i < items.Count; i++)
@@ -22,7 +22,7 @@ namespace LighterLinkedList.core
                 if (current == null)
                 {
                     current = new LighterNode<T>(items[i]);
-                    Head = current;
+                    _head = current;
                     continue;
                 }
 
@@ -40,7 +40,7 @@ namespace LighterLinkedList.core
         /// <summary>
         /// Finds the head LighterNode<T>.
         /// </summary>
-        public LighterNode<T> First => Head;
+        public LighterNode<T> First => _head;
 
         /// <summary>
         /// Finds the last LighterNode<T>.
@@ -48,10 +48,10 @@ namespace LighterLinkedList.core
         public LighterNode<T> Last { 
             get 
             {
-                if (Head == null)
+                if (_head == null)
                     return null;
 
-                var current = Head;
+                var current = _head;
 
                 while(current.Next != null)
                 {
@@ -67,7 +67,7 @@ namespace LighterLinkedList.core
         /// </summary>
         public LighterNode<T> Find(Func<LighterNode<T>, bool> predicate)
         {
-            var current = Head;
+            var current = _head;
 
             while (current != null)
             {
@@ -85,12 +85,57 @@ namespace LighterLinkedList.core
         /// </summary>
         public void InsertAtStart(T value)
         {
-            var current = Head;
+            var current = _head;
 
-            Head = new LighterNode<T>(value)
+            _head = new LighterNode<T>(value)
             {
                 Next = current
             };
+        }
+
+        /// <summary>
+        /// Removes head LighterNode<T> from LighterList<LighterNode<T>>.        
+        /// </summary>
+        public void RemoveFirst()
+        {
+            if (_head == null)
+                return;
+
+            _head = _head.Next;
+        }
+
+        /// <summary>
+        /// Removes first matching LighterNode<T> from LighterList<LighterNode<T>>.        
+        /// </summary>
+        public void Remove(Func<LighterNode<T>, bool> predicate)
+        {
+            var target = Find(predicate);
+            RemoveNode(target);
+        }
+
+        /// <summary>
+        /// Removes specified LighterNode<T> from LighterList<LighterNode<T>>.        
+        /// </summary>
+        public void Remove(LighterNode<T> node)
+        {
+            var target = FindReferenceOf(node);
+            RemoveNode(target);
+        }
+
+        private void RemoveNode(LighterNode<T> target)
+        {
+            if (target == null)
+                return;
+
+            var previous = FindPreviousOf(target);
+
+            if (previous == null)
+            {
+                RemoveFirst();
+                return;
+            }
+
+            previous.Next = target.Next;
         }
 
         /// <summary>
@@ -99,7 +144,7 @@ namespace LighterLinkedList.core
         public void Insert(T value)
         {
             if (Last == null)
-                Head = new LighterNode<T>(value);
+                _head = new LighterNode<T>(value);
             else
                 Last.Next = new LighterNode<T>(value);
         }
@@ -171,7 +216,7 @@ namespace LighterLinkedList.core
 
         private LighterNode<T> FindReferenceOf(LighterNode<T> node)
         {
-            var current = Head;
+            var current = _head;
 
             while(current != null)
             {
@@ -186,7 +231,7 @@ namespace LighterLinkedList.core
 
         private LighterNode<T> FindPreviousOf(LighterNode<T> node)
         {
-            var current = Head;
+            var current = _head;
 
             while (current != null)
             {
