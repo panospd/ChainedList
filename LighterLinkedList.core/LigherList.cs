@@ -40,12 +40,14 @@ namespace LighterLinkedList.core
         /// <summary>
         /// Finds the head LighterNode<T>.
         /// </summary>
-        public LighterNode<T> First => _head;
+        public LighterNode<T> Head => _head;
+
+        public bool IsEmpty => _head == null;
 
         /// <summary>
         /// Finds the last LighterNode<T>.
         /// </summary>
-        public LighterNode<T> Last { 
+        public LighterNode<T> Tail { 
             get 
             {
                 if (_head == null)
@@ -122,6 +124,14 @@ namespace LighterLinkedList.core
             RemoveNode(target);
         }
 
+        /// <summary>
+        /// Removes last LighterNode<T> from LighterList<LighterNode<T>>.        
+        /// </summary>
+        public void RemoveLast()
+        {
+            RemoveNode(Tail);
+        }
+
         private void RemoveNode(LighterNode<T> target)
         {
             if (target == null)
@@ -143,10 +153,10 @@ namespace LighterLinkedList.core
         /// </summary>
         public void Insert(T value)
         {
-            if (Last == null)
+            if (Tail == null)
                 _head = new LighterNode<T>(value);
             else
-                Last.Next = new LighterNode<T>(value);
+                Tail.Next = new LighterNode<T>(value);
         }
 
         /// <summary>

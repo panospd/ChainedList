@@ -11,7 +11,7 @@ namespace LIghterLinkedList.tests
         {
             var sut = new LigherList<int>(new List<int> { 1, 2, 4 });
 
-            var head = sut.First;
+            var head = sut.Head;
             var second = head.Next;
             var third = second.Next;
 
@@ -46,7 +46,7 @@ namespace LIghterLinkedList.tests
         {
             var sut = new LigherList<int>(new List<int> { 1, 2, 4 });
 
-            var result = sut.Last;
+            var result = sut.Tail;
 
             Assert.AreEqual(result.Value, 4);
         }
@@ -56,7 +56,7 @@ namespace LIghterLinkedList.tests
         {
             var sut = new LigherList<int>();
 
-            var result = sut.Last;
+            var result = sut.Tail;
 
             Assert.IsNull(result);
         }
@@ -68,7 +68,7 @@ namespace LIghterLinkedList.tests
 
             sut.InsertAtStart(10);
 
-            var first = sut.First;
+            var first = sut.Head;
             var second = first.Next;
             var third = second.Next;
             var fourth = third.Next;
@@ -86,8 +86,8 @@ namespace LIghterLinkedList.tests
 
             sut.InsertAtStart(10);
 
-            Assert.AreEqual(sut.First.Value, 10);
-            Assert.IsNull(sut.First.Next);
+            Assert.AreEqual(sut.Head.Value, 10);
+            Assert.IsNull(sut.Head.Next);
         }
 
         [Test]
@@ -97,8 +97,8 @@ namespace LIghterLinkedList.tests
 
             sut.Insert(10);
 
-            Assert.AreEqual(sut.First.Value, 10);
-            Assert.IsNull(sut.First.Next);
+            Assert.AreEqual(sut.Head.Value, 10);
+            Assert.IsNull(sut.Head.Next);
         }
 
         [Test]
@@ -108,7 +108,7 @@ namespace LIghterLinkedList.tests
 
             sut.Insert(10);
 
-            var first = sut.First;
+            var first = sut.Head;
             var second = first.Next;
             var third = second.Next;
             var fourth = third.Next;
@@ -126,7 +126,7 @@ namespace LIghterLinkedList.tests
 
             sut.InsertAfter(10, node => node.Value == 1);
 
-            var first = sut.First;
+            var first = sut.Head;
             var second = first.Next;
             var third = second.Next;
             var fourth = third.Next;
@@ -144,7 +144,7 @@ namespace LIghterLinkedList.tests
 
             sut.InsertAfter(10, node => node.Value == 8);
 
-            var first = sut.First;
+            var first = sut.Head;
             var second = first.Next;
             var third = second.Next;
             var fourth = third.Next;
@@ -162,15 +162,15 @@ namespace LIghterLinkedList.tests
 
             sut.InsertAfter(10, node => node.Value == 1);
 
-            Assert.AreEqual(sut.First.Value, 10);
-            Assert.IsNull(sut.First.Next);
+            Assert.AreEqual(sut.Head.Value, 10);
+            Assert.IsNull(sut.Head.Next);
         }
 
         [Test]
         public void InsertAfter_WhenCalledWithRefNode_ShouldInsertItemAfterMatchingNode()
         {
             var sut = new LigherList<int>(new List<int> { 1, 2, 4 });
-            var first = sut.First;
+            var first = sut.Head;
 
             sut.InsertAfter(10, first.Next);
 
@@ -192,7 +192,7 @@ namespace LIghterLinkedList.tests
 
             sut.InsertAfter(10, node);
 
-            var first = sut.First;
+            var first = sut.Head;
             var second = first.Next;
             var third = second.Next;
             var fourth = third.Next;
@@ -210,7 +210,7 @@ namespace LIghterLinkedList.tests
 
             sut.InsertBefore(10, node => node.Value == 2);
 
-            var first = sut.First;
+            var first = sut.Head;
             var second = first.Next;
             var third = second.Next;
             var fourth = third.Next;
@@ -228,7 +228,7 @@ namespace LIghterLinkedList.tests
 
             sut.InsertBefore(10, node => node.Value == 8);
 
-            var first = sut.First;
+            var first = sut.Head;
             var second = first.Next;
             var third = second.Next;
             var fourth = third.Next;
@@ -246,7 +246,7 @@ namespace LIghterLinkedList.tests
 
             sut.InsertBefore(10, node => node.Value == 1);
 
-            var first = sut.First;
+            var first = sut.Head;
             Assert.AreEqual(first.Value, 10);
             Assert.IsNull(first.Next);
         }
@@ -255,7 +255,7 @@ namespace LIghterLinkedList.tests
         public void InsertBefore_WhenCalledWithRefNode_ShouldInsertItemBeforeMatchingNode()
         {
             var sut = new LigherList<int>(new List<int> { 1, 2, 4 });
-            var first = sut.First;
+            var first = sut.Head;
 
             sut.InsertBefore(10, first.Next.Next);
 
@@ -277,7 +277,7 @@ namespace LIghterLinkedList.tests
 
             sut.InsertBefore(10, node);
 
-            var first = sut.First;
+            var first = sut.Head;
             var second = first.Next;
             var third = second.Next;
             var fourth = third.Next;
@@ -295,7 +295,7 @@ namespace LIghterLinkedList.tests
 
             sut.RemoveFirst();
 
-            var first = sut.First;
+            var first = sut.Head;
             var second = first.Next;
             var third = second.Next;
             Assert.AreEqual(first.Value, 2);
@@ -311,7 +311,7 @@ namespace LIghterLinkedList.tests
 
             sut.Remove(n => n.Value == 4);
 
-            var first = sut.First;
+            var first = sut.Head;
             var second = first.Next;
             var third = second.Next;
             Assert.AreEqual(first.Value, 1);
@@ -327,7 +327,7 @@ namespace LIghterLinkedList.tests
 
             sut.Remove(n => n.Value == 1);
 
-            var first = sut.First;
+            var first = sut.Head;
             var second = first.Next;
             var third = second.Next;
             Assert.AreEqual(first.Value, 2);
@@ -341,9 +341,9 @@ namespace LIghterLinkedList.tests
         {
             var sut = new LigherList<int>(new List<int> { 1, 2, 4, 10 });
 
-            sut.Remove(sut.First.Next);
+            sut.Remove(sut.Head.Next);
 
-            var first = sut.First;
+            var first = sut.Head;
             var second = first.Next;
             var third = second.Next;
             Assert.AreEqual(first.Value, 1);
@@ -357,15 +357,51 @@ namespace LIghterLinkedList.tests
         {
             var sut = new LigherList<int>(new List<int> { 1, 2, 4, 10 });
 
-            sut.Remove(sut.First);
+            sut.Remove(sut.Head);
 
-            var first = sut.First;
+            var first = sut.Head;
             var second = first.Next;
             var third = second.Next;
             Assert.AreEqual(first.Value, 2);
             Assert.AreEqual(second.Value, 4);
             Assert.AreEqual(third.Value, 10);
             Assert.IsNull(third.Next);
+        }
+
+        [Test]
+        public void RemoveLast_WhenCalled_ShouldRemoveLastNode()
+        {
+            var sut = new LigherList<int>(new List<int> { 1, 2, 4, 10 });
+
+            sut.RemoveLast();
+
+            var first = sut.Head;
+            var second = first.Next;
+            var third = second.Next;
+            Assert.AreEqual(first.Value, 1);
+            Assert.AreEqual(second.Value, 2);
+            Assert.AreEqual(third.Value, 4);
+            Assert.IsNull(third.Next);
+        }
+
+        [Test]
+        public void RemoveLast_WhenCalledAndEmptyList_ShouldReturn()
+        {
+            var sut = new LigherList<int>();
+
+            sut.RemoveLast();
+
+            Assert.IsNull(sut.Head);
+        }
+
+        [Test]
+        public void RemoveLast_WhenCalledListHasOneNode_ListShouldBeEmpty()
+        {
+            var sut = new LigherList<int>(new List<int> { 1 });
+
+            sut.RemoveLast();
+
+            Assert.IsTrue(sut.IsEmpty);
         }
     }
 }
