@@ -106,5 +106,20 @@ namespace LighterLinkedList.core
             else
                 Last.Next = new LighterNode<T>(value);
         }
+
+        public void InsertAfter(T value, Func<LighterNode<T>, bool> predicate)
+        {
+            var node = Find(predicate);
+
+            if (node == null)
+            {
+                InsertAtEnd(value);
+                return;
+            }
+
+            var originalNext = node.Next;
+            node.Next = new LighterNode<T>(value);
+            node.Next.Next = originalNext;
+        }
     }
 }
