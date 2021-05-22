@@ -41,7 +41,7 @@ namespace LIghterLinkedList.tests
         {
             var sut = new LigherList<int>(new List<int> { 1, 2, 4 });
 
-            var result = sut.Find(a => a == 5);
+            var result = sut.Find(a => a.Value == 5);
 
             Assert.IsNull(result);
         }
