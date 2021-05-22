@@ -55,5 +55,44 @@ namespace LIghterLinkedList.tests
 
             Assert.AreEqual(result.Value, 4);
         }
+
+        [Test]
+        public void Last_WhenUsedAndListIsEmpty_ShouldReturnNull()
+        {
+            var sut = new LigherList<int>();
+
+            var result = sut.Last;
+
+            Assert.IsNull(result);
+        }
+
+        [Test]
+        public void InsertAtStart_WhenCalled_ShouldInsertItemAtStart()
+        {
+            var sut = new LigherList<int>(new List<int> { 1, 2, 4 });
+            sut.InsertAtStart(10);
+
+            var first = sut.First;
+            var second = first.Next;
+            var third = second.Next;
+            var fourth = third.Next;
+
+            Assert.AreEqual(first.Value, 10);
+            Assert.AreEqual(second.Value, 1);
+            Assert.AreEqual(third.Value, 2);
+            Assert.AreEqual(fourth.Value, 4);
+        }
+
+        [Test]
+        public void InsertAtStart_WhenListIsEmpty_ShouldInsertItemAtStart()
+        {
+            var sut = new LigherList<int>();
+            sut.InsertAtStart(10);
+
+            var first = sut.First;
+
+            Assert.AreEqual(first.Value, 10);
+            Assert.IsNull(first.Next);
+        }
     }
 }

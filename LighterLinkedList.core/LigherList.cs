@@ -6,9 +6,14 @@ namespace LighterLinkedList.core
     public class LigherList<T>
     {
         private LighterNode<T> Head { get; set; }
+
+        public LigherList()
+        {
+            Head = null;
+        }
+
         public LigherList(List<T> items)
         {
-
             var current = Head;
             LighterNode<T> previous = null;
 
@@ -43,6 +48,9 @@ namespace LighterLinkedList.core
         public LighterNode<T> Last { 
             get 
             {
+                if (Head == null)
+                    return null;
+
                 var current = Head;
 
                 while(current.Next != null)
@@ -71,6 +79,20 @@ namespace LighterLinkedList.core
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Finds the first element based on predicate If no node found will return null.
+        /// <param name="value">Item of type T to add to the list</param>
+        /// </summary>
+        public void InsertAtStart(T value)
+        {
+            var current = Head;
+
+            Head = new LighterNode<T>(value)
+            {
+                Next = current
+            };
         }
     }
 }
