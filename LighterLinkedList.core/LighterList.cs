@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LighterLinkedList.core
 {
@@ -222,13 +223,33 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
-        /// Inserts element before specified LighterNode<T> in LighterList<LighterNode<T>>. 
+        /// Inserts T element before specified LighterNode<T> in LighterList<LighterNode<T>>. 
         /// If no matching LighterNode<T> found, will insert at the end of LighterList<LighterNode<T>>   
         /// </summary>
         public void InsertBefore(LighterNode<T> node, T element)
         {
             var target = FindReferenceOf(node);
             InsertElementBefore(element, target);
+        }
+
+        /// <summary>
+        /// Inserts IEnumerable<T> elements before specified LighterNode<T> in LighterList<LighterNode<T>>. 
+        /// If no matching LighterNode<T> found, will insert at the end of LighterList<LighterNode<T>>   
+        /// </summary>
+        public void InsertRangeBefore(LighterNode<T> node, IEnumerable<T> elements)
+        {
+            var target = FindReferenceOf(node);
+            InsertElementsBefore(target, elements);
+        }
+
+        /// <summary>
+        /// Inserts IEnumerable<T> elements before matching LighterNode<T> in LighterList<LighterNode<T>>. 
+        /// If no matching LighterNode<T> found, will insert at the end of LighterList<LighterNode<T>>   
+        /// </summary>
+        public void InsertRangeBefore(Func<LighterNode<T>, bool> predicate, IEnumerable<T> elements)
+        {
+            var target = Find(predicate);
+            InsertElementsBefore(target, elements);
         }
 
         /// <summary>
@@ -267,6 +288,16 @@ namespace LighterLinkedList.core
             return flatList;
         }
 
+        private void InsertElementsBefore(LighterNode<T> target, IEnumerable<T> elements)
+        {
+            var elementsList = elements.ToList();
+
+            for (int i = elementsList.Count - 1; i > -1; i--)
+            {
+                target = InsertElementBefore(elementsList[i], target);
+            }
+        }
+
         private void InsertElementsAfter(LighterNode<T> target, IEnumerable<T> elements)
         {
             foreach (var element in elements)
@@ -275,12 +306,12 @@ namespace LighterLinkedList.core
             }
         }
 
-        private void InsertElementBefore(T element, LighterNode<T> target)
+        private LighterNode<T> InsertElementBefore(T element, LighterNode<T> target)
         {
             if (target == null)
             {
                 Insert(element);
-                return;
+                return Tail;
             }
 
             var previous = FindPreviousOf(target);
@@ -288,10 +319,10 @@ namespace LighterLinkedList.core
             if(previous == null)
             {
                 InsertAtStart(element);
-                return;
+                return Head;
             }
 
-            InsertElementAfter(element, previous);
+            return InsertElementAfter(element, previous);
         }
 
         private LighterNode<T> InsertElementAfter(T element, LighterNode<T> target)
