@@ -69,7 +69,7 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
-        /// Finds the first element based on predicate If no node found will return null.
+        /// Finds the first node that matches predicate.
         /// </summary>
         public LighterNode<T> Find(Func<LighterNode<T>, bool> predicate)
         {
@@ -78,6 +78,42 @@ namespace LighterLinkedList.core
             while (current != null)
             {
                 if (predicate(current))
+                    return current;
+
+                current = current.Next;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Finds the first node that matches predicate.
+        /// </summary>
+        public LighterNode<T> Find(Func<T, bool> predicate)
+        {
+            var current = _head;
+
+            while (current != null)
+            {
+                if (predicate(current.Value))
+                    return current;
+
+                current = current.Next;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Finds the first node based that contains the specified value.
+        /// </summary>
+        public LighterNode<T> Find(T value)
+        {
+            var current = _head;
+
+            while (current != null)
+            {
+                if (EqualityComparer<T>.Default.Equals(current.Value, value))
                     return current;
 
                 current = current.Next;
