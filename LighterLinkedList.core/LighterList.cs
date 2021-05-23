@@ -13,16 +13,16 @@ namespace LighterLinkedList.core
             _head = null;
         }
 
-        public LighterList(List<T> items)
+        public LighterList(IEnumerable<T> initialValues)
         {
             var current = _head;
             LighterNode<T> previous = null;
 
-            for (int i = 0; i < items.Count; i++)
+            foreach(var initialValue in initialValues)
             {
                 if (current == null)
                 {
-                    current = new LighterNode<T>(items[i]);
+                    current = new LighterNode<T>(initialValue);
                     _head = current;
                     continue;
                 }
@@ -30,7 +30,7 @@ namespace LighterLinkedList.core
                 if (current.Value != null)
                 {
                     previous = current;
-                    current = new LighterNode<T>(items[i]);
+                    current = new LighterNode<T>(initialValue);
                 }
 
                 if (previous != null)
