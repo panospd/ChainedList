@@ -165,6 +165,15 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
+        /// Removes the first node that contains specified value.        
+        /// </summary>
+        public void Remove(T value)
+        {
+            var target = Find(value);
+            RemoveNode(target);
+        }
+
+        /// <summary>
         /// Removes specified IEnumerable<LighterNode<T>> nodes from LighterList<LighterNode<T>>.        
         /// </summary>
         public void RemoveAll(IEnumerable<LighterNode<T>> nodes)
