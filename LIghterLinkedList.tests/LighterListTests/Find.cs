@@ -58,6 +58,40 @@ namespace LIghterLinkedList.tests.LighterListTests
         }
 
         [Test]
+        public void WhenCalledWithObjectTElementAndPredicate_ReturnsFirstMatch()
+        {
+            var sut = new LighterList<Person>(new List<Person>
+            {
+                new Person(1, "John", "Smith"),
+                new Person(2, "Maria", "db"),
+                new Person(3, "Docker", "Container"),
+                new Person(4, "Ci", "Cd")
+            });
+
+            var result = sut.Find(v => v.Id == 3);
+
+            Assert.AreEqual(result.Value.Id, 3);
+            Assert.AreEqual(result.Value.Name, "Docker");
+            Assert.IsNotNull(result.Next);
+        }
+
+        [Test]
+        public void WhenCalledWithObjectTElementAndPredicateAndNoMatch_ReturnsNull()
+        {
+            var sut = new LighterList<Person>(new List<Person>
+            {
+                new Person(1, "John", "Smith"),
+                new Person(2, "Maria", "db"),
+                new Person(3, "Docker", "Container"),
+                new Person(4, "Ci", "Cd")
+            });
+
+            var result = sut.Find(v => v.Id == 5);
+
+            Assert.IsNull(result);
+        }
+
+        [Test]
         public void WhenCalledWithObjectTElementWithOverrideEquals_ReturnsFirstMatch()
         {
             var sut = new LighterList<StrongPerson>(new List<StrongPerson>
