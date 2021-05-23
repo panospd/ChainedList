@@ -4,7 +4,7 @@
   // Examples
   
   
-  // Empty list
+  // Creates empty list
   var lighterList = new LighterList<int>();
   
   // Preloaded list
