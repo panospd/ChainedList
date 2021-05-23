@@ -35,6 +35,20 @@ namespace LIghterLinkedList.tests.LighterListTests
         }
 
         [Test]
+        public void WhenCalledWithSpecificNodesAndContainNoMatching_ShouldRemoveOnlyMatchingNodes()
+        {
+            var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10 });
+
+            sut.RemoveAll(new List<LighterNode<int>> { sut.Head, sut.Head.Next.Next, new LighterNode<int>(2)});
+
+            var first = sut.Head;
+            var second = first.Next;
+            Assert.AreEqual(first.Value, 2);
+            Assert.AreEqual(second.Value, 10);
+            Assert.IsNull(second.Next);
+        }
+
+        [Test]
         public void WhenCalledWithSpecificNodesAndListEmpty_ShouldRemoveNodes()
         {
             var sut = new LighterList<int>();
