@@ -215,6 +215,33 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
+        /// Removes all matching nodes.        
+        /// </summary>
+        public void RemoveAll(Func<T, bool> predicate)
+        {
+            var nodesToDelete = FindAll(predicate);
+
+            foreach (var node in nodesToDelete)
+                Remove(node);
+        }
+
+        public IEnumerable<LighterNode<T>> FindAll(Func<T, bool> predicate)
+        {
+            var results = new List<LighterNode<T>>();
+            var current = _head;
+
+            while (current != null)
+            {
+                if (predicate(current.Value))
+                    results.Add(current);
+
+                current = current.Next;
+            }
+
+            return results;
+        }
+
+        /// <summary>
         /// Removes all nodes from LighterList<LighterNode<T>>.        
         /// </summary>
         public void RemoveAll()

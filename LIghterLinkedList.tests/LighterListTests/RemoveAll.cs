@@ -85,5 +85,35 @@ namespace LIghterLinkedList.tests.LighterListTests
 
             Assert.IsTrue(sut.IsEmpty);
         }
+
+        [Test]
+        public void WhenCalledWithElementPredicate_ShouldRemoveAllMatchingNodes()
+        {
+            var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10, 1, 4 });
+
+            sut.RemoveAll(v => v == 1 || v == 4);
+
+            Assert.AreEqual(2, sut.Count);
+            var first = sut.Head;
+            var second = first.Next;
+            Assert.AreEqual(2, first.Value);
+            Assert.AreEqual(10, second.Value);
+            Assert.IsNull(second.Next);
+        }
+
+        [Test]
+        public void WhenCalledWithElementPredicateAndNoMatch_ShouldNotRemoveAnyElement()
+        {
+            var sut = new LighterList<int>(new List<int> { 2, 10 });
+
+            sut.RemoveAll(v => v == 1 || v == 4);
+
+            Assert.AreEqual(2, sut.Count);
+            var first = sut.Head;
+            var second = first.Next;
+            Assert.AreEqual(2, first.Value);
+            Assert.AreEqual(10, second.Value);
+            Assert.IsNull(second.Next);
+        }
     }
 }
