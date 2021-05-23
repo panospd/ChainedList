@@ -17,10 +17,10 @@ namespace LIghterLinkedList.tests.LighterListTests
             var second = first.Next;
             var third = second.Next;
             var fourth = third.Next;
-            Assert.AreEqual(first.Value, 1);
-            Assert.AreEqual(second.Value, 10);
-            Assert.AreEqual(third.Value, 2);
-            Assert.AreEqual(fourth.Value, 4);
+            Assert.AreEqual(1, first.Value);
+            Assert.AreEqual(10, second.Value);
+            Assert.AreEqual(2, third.Value);
+            Assert.AreEqual(4, fourth.Value);
             Assert.IsNull(fourth.Next);
         }
 
@@ -35,10 +35,10 @@ namespace LIghterLinkedList.tests.LighterListTests
             var second = first.Next;
             var third = second.Next;
             var fourth = third.Next;
-            Assert.AreEqual(first.Value, 1);
-            Assert.AreEqual(second.Value, 2);
-            Assert.AreEqual(third.Value, 4);
-            Assert.AreEqual(fourth.Value, 10);
+            Assert.AreEqual(1, first.Value);
+            Assert.AreEqual(2, second.Value);
+            Assert.AreEqual(4, third.Value);
+            Assert.AreEqual(10, fourth.Value);
             Assert.IsNull(fourth.Next);
         }
 
@@ -50,7 +50,7 @@ namespace LIghterLinkedList.tests.LighterListTests
             sut.InsertBefore(node => node.Value == 1, 10);
 
             var first = sut.Head;
-            Assert.AreEqual(first.Value, 10);
+            Assert.AreEqual(10, first.Value);
             Assert.IsNull(first.Next);
         }
 
@@ -65,10 +65,10 @@ namespace LIghterLinkedList.tests.LighterListTests
             var second = first.Next;
             var third = second.Next;
             var fourth = third.Next;
-            Assert.AreEqual(first.Value, 1);
-            Assert.AreEqual(second.Value, 2);
-            Assert.AreEqual(third.Value, 10);
-            Assert.AreEqual(fourth.Value, 4);
+            Assert.AreEqual(1, first.Value);
+            Assert.AreEqual(2, second.Value);
+            Assert.AreEqual(10, third.Value);
+            Assert.AreEqual(4, fourth.Value);
             Assert.IsNull(fourth.Next);
         }
 
@@ -84,10 +84,10 @@ namespace LIghterLinkedList.tests.LighterListTests
             var second = first.Next;
             var third = second.Next;
             var fourth = third.Next;
-            Assert.AreEqual(first.Value, 1);
-            Assert.AreEqual(second.Value, 2);
-            Assert.AreEqual(third.Value, 4);
-            Assert.AreEqual(fourth.Value, 10);
+            Assert.AreEqual(1, first.Value);
+            Assert.AreEqual(2, second.Value);
+            Assert.AreEqual(4, third.Value);
+            Assert.AreEqual(10, fourth.Value);
             Assert.IsNull(fourth.Next);
         }
 
@@ -102,10 +102,10 @@ namespace LIghterLinkedList.tests.LighterListTests
             var second = first.Next;
             var third = second.Next;
             var fourth = third.Next;
-            Assert.AreEqual(first.Value, 10);
-            Assert.AreEqual(second.Value, 1);
-            Assert.AreEqual(third.Value, 2);
-            Assert.AreEqual(fourth.Value, 4);
+            Assert.AreEqual(10, first.Value);
+            Assert.AreEqual(1, second.Value);
+            Assert.AreEqual(2, third.Value);
+            Assert.AreEqual(4, fourth.Value);
             Assert.IsNull(fourth.Next);
         }
     }

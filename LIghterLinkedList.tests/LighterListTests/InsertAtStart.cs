@@ -17,10 +17,10 @@ namespace LIghterLinkedList.tests.LighterListTests
             var second = first.Next;
             var third = second.Next;
             var fourth = third.Next;
-            Assert.AreEqual(first.Value, 10);
-            Assert.AreEqual(second.Value, 1);
-            Assert.AreEqual(third.Value, 2);
-            Assert.AreEqual(fourth.Value, 4);
+            Assert.AreEqual(10, first.Value);
+            Assert.AreEqual(1, second.Value);
+            Assert.AreEqual(2, third.Value);
+            Assert.AreEqual(4, fourth.Value);
             Assert.IsNull(fourth.Next);
         }
 
@@ -31,7 +31,7 @@ namespace LIghterLinkedList.tests.LighterListTests
 
             sut.InsertAtStart(10);
 
-            Assert.AreEqual(sut.Head.Value, 10);
+            Assert.AreEqual(10, sut.Head.Value);
             Assert.IsNull(sut.Head.Next);
         }
     }

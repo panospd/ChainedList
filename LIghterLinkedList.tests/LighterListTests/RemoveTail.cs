@@ -16,9 +16,9 @@ namespace LIghterLinkedList.tests.LighterListTests
             var first = sut.Head;
             var second = first.Next;
             var third = second.Next;
-            Assert.AreEqual(first.Value, 1);
-            Assert.AreEqual(second.Value, 2);
-            Assert.AreEqual(third.Value, 4);
+            Assert.AreEqual(1, first.Value);
+            Assert.AreEqual(2, second.Value);
+            Assert.AreEqual(4, third.Value);
             Assert.IsNull(third.Next);
         }
 

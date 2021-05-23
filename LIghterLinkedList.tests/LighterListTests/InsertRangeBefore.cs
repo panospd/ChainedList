@@ -19,12 +19,12 @@ namespace LIghterLinkedList.tests.LighterListTests
             var fourth = third.Next;
             var fifth = fourth.Next;
             var sixth = fifth.Next;
-            Assert.AreEqual(first.Value, 1);
-            Assert.AreEqual(second.Value, 10);
-            Assert.AreEqual(third.Value, 11);
-            Assert.AreEqual(fourth.Value, 12);
-            Assert.AreEqual(fifth.Value, 2);
-            Assert.AreEqual(sixth.Value, 4);
+            Assert.AreEqual(1, first.Value);
+            Assert.AreEqual(10, second.Value);
+            Assert.AreEqual(11, third.Value);
+            Assert.AreEqual(12, fourth.Value);
+            Assert.AreEqual(2, fifth.Value);
+            Assert.AreEqual(4, sixth.Value);
             Assert.IsNull(sixth.Next);
         }
 
@@ -38,9 +38,9 @@ namespace LIghterLinkedList.tests.LighterListTests
             var first = sut.Head;
             var second = first.Next;
             var third = second.Next;
-            Assert.AreEqual(first.Value, 10);
-            Assert.AreEqual(second.Value, 11);
-            Assert.AreEqual(third.Value, 12);
+            Assert.AreEqual(10, first.Value);
+            Assert.AreEqual(11, second.Value);
+            Assert.AreEqual(12, third.Value);
             Assert.IsNull(third.Next);
         }
 
@@ -57,12 +57,12 @@ namespace LIghterLinkedList.tests.LighterListTests
             var fourth = third.Next;
             var fifth = fourth.Next;
             var sixth = fifth.Next;
-            Assert.AreEqual(first.Value, 10);
-            Assert.AreEqual(second.Value, 11);
-            Assert.AreEqual(third.Value, 12);
-            Assert.AreEqual(fourth.Value, 1);
-            Assert.AreEqual(fifth.Value, 2);
-            Assert.AreEqual(sixth.Value, 4);
+            Assert.AreEqual(10, first.Value);
+            Assert.AreEqual(11, second.Value);
+            Assert.AreEqual(12, third.Value);
+            Assert.AreEqual(1, fourth.Value);
+            Assert.AreEqual(2, fifth.Value);
+            Assert.AreEqual(4, sixth.Value);
             Assert.IsNull(sixth.Next);
         }
 
@@ -79,12 +79,12 @@ namespace LIghterLinkedList.tests.LighterListTests
             var fourth = third.Next;
             var fifth = fourth.Next;
             var sixth = fifth.Next;
-            Assert.AreEqual(first.Value, 1);
-            Assert.AreEqual(second.Value, 10);
-            Assert.AreEqual(third.Value, 11);
-            Assert.AreEqual(fourth.Value, 12);
-            Assert.AreEqual(fifth.Value, 2);
-            Assert.AreEqual(sixth.Value, 4);
+            Assert.AreEqual(1, first.Value);
+            Assert.AreEqual(10, second.Value);
+            Assert.AreEqual(11, third.Value);
+            Assert.AreEqual(12, fourth.Value);
+            Assert.AreEqual(2, fifth.Value);
+            Assert.AreEqual(4, sixth.Value);
             Assert.IsNull(sixth.Next);
         }
 
@@ -98,9 +98,9 @@ namespace LIghterLinkedList.tests.LighterListTests
             var first = sut.Head;
             var second = first.Next;
             var third = second.Next;
-            Assert.AreEqual(first.Value, 10);
-            Assert.AreEqual(second.Value, 11);
-            Assert.AreEqual(third.Value, 12);
+            Assert.AreEqual(10, first.Value);
+            Assert.AreEqual(11, second.Value);
+            Assert.AreEqual(12, third.Value);
             Assert.IsNull(third.Next);
         }
 
@@ -117,12 +117,12 @@ namespace LIghterLinkedList.tests.LighterListTests
             var fourth = third.Next;
             var fifth = fourth.Next;
             var sixth = fifth.Next;
-            Assert.AreEqual(first.Value, 10);
-            Assert.AreEqual(second.Value, 11);
-            Assert.AreEqual(third.Value, 12);
-            Assert.AreEqual(fourth.Value, 1);
-            Assert.AreEqual(fifth.Value, 2);
-            Assert.AreEqual(sixth.Value, 4);
+            Assert.AreEqual(10, first.Value);
+            Assert.AreEqual(11, second.Value);
+            Assert.AreEqual(12, third.Value);
+            Assert.AreEqual(1, fourth.Value);
+            Assert.AreEqual(2, fifth.Value);
+            Assert.AreEqual(4, sixth.Value);
             Assert.IsNull(sixth.Next);
         }
     }

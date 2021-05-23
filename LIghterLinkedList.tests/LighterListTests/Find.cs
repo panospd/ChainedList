@@ -14,7 +14,7 @@ namespace LIghterLinkedList.tests.LighterListTests
 
             var result = sut.Find(a => a.Value == 2);
 
-            Assert.AreEqual(result.Value, 2);
+            Assert.AreEqual(2, result.Value);
             Assert.IsNotNull(result.Next);
         }
 
@@ -35,7 +35,7 @@ namespace LIghterLinkedList.tests.LighterListTests
 
             var result = sut.Find(2);
 
-            Assert.AreEqual(result.Value, 2);
+            Assert.AreEqual(2, result.Value);
             Assert.IsNotNull(result.Next);
         }
 
@@ -52,8 +52,8 @@ namespace LIghterLinkedList.tests.LighterListTests
 
             var result = sut.Find(sut.Head.Next.Value);
 
-            Assert.AreEqual(result.Value.Id, 2);
-            Assert.AreEqual(result.Value.Name, "Maria");
+            Assert.AreEqual(2, result.Value.Id);
+            Assert.AreEqual("Maria", result.Value.Name);
             Assert.IsNotNull(result.Next);
         }
 
@@ -70,8 +70,8 @@ namespace LIghterLinkedList.tests.LighterListTests
 
             var result = sut.Find(v => v.Id == 3);
 
-            Assert.AreEqual(result.Value.Id, 3);
-            Assert.AreEqual(result.Value.Name, "Docker");
+            Assert.AreEqual(3, result.Value.Id);
+            Assert.AreEqual("Docker", result.Value.Name);
             Assert.IsNotNull(result.Next);
         }
 
@@ -104,8 +104,8 @@ namespace LIghterLinkedList.tests.LighterListTests
 
             var result = sut.Find(sut.Head.Next.Value);
 
-            Assert.AreEqual(result.Value.Id, 2);
-            Assert.AreEqual(result.Value.Name, "Maria");
+            Assert.AreEqual(2, result.Value.Id);
+            Assert.AreEqual("Maria", result.Value.Name);
             Assert.IsNotNull(result.Next);
         }
 

@@ -11,7 +11,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         {
             var sut = new LighterList<int>();
 
-            Assert.AreEqual(sut.Count, 0);
+            Assert.AreEqual(0, sut.Count);
         }
 
         [Test]

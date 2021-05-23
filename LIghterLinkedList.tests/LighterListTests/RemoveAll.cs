@@ -15,8 +15,8 @@ namespace LIghterLinkedList.tests.LighterListTests
 
             var first = sut.Head;
             var second = first.Next;
-            Assert.AreEqual(first.Value, 4);
-            Assert.AreEqual(second.Value, 10);
+            Assert.AreEqual(4, first.Value);
+            Assert.AreEqual(10, second.Value);
             Assert.IsNull(second.Next);
         }
 
@@ -29,8 +29,8 @@ namespace LIghterLinkedList.tests.LighterListTests
 
             var first = sut.Head;
             var second = first.Next;
-            Assert.AreEqual(first.Value, 2);
-            Assert.AreEqual(second.Value, 10);
+            Assert.AreEqual(2, first.Value);
+            Assert.AreEqual(10, second.Value);
             Assert.IsNull(second.Next);
         }
 
@@ -43,8 +43,8 @@ namespace LIghterLinkedList.tests.LighterListTests
 
             var first = sut.Head;
             var second = first.Next;
-            Assert.AreEqual(first.Value, 2);
-            Assert.AreEqual(second.Value, 10);
+            Assert.AreEqual(2, first.Value);
+            Assert.AreEqual(10, second.Value);
             Assert.IsNull(second.Next);
         }
 

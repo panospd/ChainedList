@@ -17,10 +17,10 @@ namespace LIghterLinkedList.tests.LighterListTests
             Assert.IsNotNull(result);
             Assert.IsNotEmpty(result);
             Assert.AreEqual(result.Count, 4);
-            Assert.AreEqual(result[0], "1");
-            Assert.AreEqual(result[1], "2");
-            Assert.AreEqual(result[2], "3");
-            Assert.AreEqual(result[3], "4");
+            Assert.AreEqual("1", result[0]);
+            Assert.AreEqual("2", result[1]);
+            Assert.AreEqual("3", result[2]);
+            Assert.AreEqual("4", result[3]);
         }
 
         [Test]
@@ -36,9 +36,9 @@ namespace LIghterLinkedList.tests.LighterListTests
 
             Assert.IsNotNull(result);
             Assert.IsNotEmpty(result);
-            Assert.AreEqual(result.Count, 2);
-            Assert.AreEqual(result[0], "My name is Panos Anastasiadis");
-            Assert.AreEqual(result[1], "My name is John Smith");
+            Assert.AreEqual(2, result.Count);
+            Assert.AreEqual("My name is Panos Anastasiadis", result[0]);
+            Assert.AreEqual("My name is John Smith", result[1]);
         }
 
         [Test]

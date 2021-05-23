@@ -16,9 +16,9 @@ namespace LIghterLinkedList.tests.LighterListTests
             var first = sut.Head;
             var second = first.Next;
             var third = second.Next;
-            Assert.AreEqual(first.Value, 1);
-            Assert.AreEqual(second.Value, 2);
-            Assert.AreEqual(third.Value, 10);
+            Assert.AreEqual(1, first.Value);
+            Assert.AreEqual(2, second.Value);
+            Assert.AreEqual(10, third.Value);
             Assert.IsNull(third.Next);
         }
 
@@ -33,10 +33,10 @@ namespace LIghterLinkedList.tests.LighterListTests
             var second = first.Next;
             var third = second.Next;
             var fourth = third.Next;
-            Assert.AreEqual(first.Value, 1);
-            Assert.AreEqual(second.Value, 4);
-            Assert.AreEqual(third.Value, 10);
-            Assert.AreEqual(fourth.Value, 2);
+            Assert.AreEqual(1, first.Value);
+            Assert.AreEqual(4, second.Value);
+            Assert.AreEqual(10, third.Value);
+            Assert.AreEqual(2, fourth.Value);
             Assert.IsNull(fourth.Next);
         }
 
@@ -50,9 +50,9 @@ namespace LIghterLinkedList.tests.LighterListTests
             var first = sut.Head;
             var second = first.Next;
             var third = second.Next;
-            Assert.AreEqual(first.Value, 2);
-            Assert.AreEqual(second.Value, 4);
-            Assert.AreEqual(third.Value, 10);
+            Assert.AreEqual(2, first.Value);
+            Assert.AreEqual(4, second.Value);
+            Assert.AreEqual(10, third.Value);
             Assert.IsNull(third.Next);
         }
 
@@ -66,9 +66,9 @@ namespace LIghterLinkedList.tests.LighterListTests
             var first = sut.Head;
             var second = first.Next;
             var third = second.Next;
-            Assert.AreEqual(first.Value, 2);
-            Assert.AreEqual(second.Value, 4);
-            Assert.AreEqual(third.Value, 10);
+            Assert.AreEqual(2, first.Value);
+            Assert.AreEqual(4, second.Value);
+            Assert.AreEqual(10, third.Value);
             Assert.IsNull(third.Next);
         }
 
@@ -82,9 +82,9 @@ namespace LIghterLinkedList.tests.LighterListTests
             var first = sut.Head;
             var second = first.Next;
             var third = second.Next;
-            Assert.AreEqual(first.Value, 1);
-            Assert.AreEqual(second.Value, 4);
-            Assert.AreEqual(third.Value, 10);
+            Assert.AreEqual(1, first.Value);
+            Assert.AreEqual(4, second.Value);
+            Assert.AreEqual(10, third.Value);
             Assert.IsNull(third.Next);
         }
 
@@ -98,9 +98,9 @@ namespace LIghterLinkedList.tests.LighterListTests
             var first = sut.Head;
             var second = first.Next;
             var third = second.Next;
-            Assert.AreEqual(first.Value, 2);
-            Assert.AreEqual(second.Value, 4);
-            Assert.AreEqual(third.Value, 10);
+            Assert.AreEqual(2, first.Value);
+            Assert.AreEqual(4, second.Value);
+            Assert.AreEqual(10, third.Value);
             Assert.IsNull(third.Next);
         }
 
@@ -120,12 +120,12 @@ namespace LIghterLinkedList.tests.LighterListTests
             var first = sut.Head;
             var second = first.Next;
             var third = second.Next;
-            Assert.AreEqual(first.Value.Id, 1);
-            Assert.AreEqual(first.Value.Name, "a");
-            Assert.AreEqual(second.Value.Id, 3);
-            Assert.AreEqual(second.Value.Name, "c");
-            Assert.AreEqual(third.Value.Id, 4);
-            Assert.AreEqual(third.Value.Name, "d");
+            Assert.AreEqual(1, first.Value.Id);
+            Assert.AreEqual("a", first.Value.Name);
+            Assert.AreEqual(3, second.Value.Id);
+            Assert.AreEqual("c", second.Value.Name);
+            Assert.AreEqual(4, third.Value.Id);
+            Assert.AreEqual("d", third.Value.Name);
             Assert.IsNull(third.Next);
         }
 
@@ -146,14 +146,14 @@ namespace LIghterLinkedList.tests.LighterListTests
             var second = first.Next;
             var third = second.Next;
             var fourth = third.Next;
-            Assert.AreEqual(first.Value.Id, 1);
-            Assert.AreEqual(first.Value.Name, "a");
-            Assert.AreEqual(second.Value.Id, 2);
-            Assert.AreEqual(second.Value.Name, "b");
-            Assert.AreEqual(third.Value.Id, 3);
-            Assert.AreEqual(third.Value.Name, "c");
-            Assert.AreEqual(fourth.Value.Id, 4);
-            Assert.AreEqual(fourth.Value.Name, "d");
+            Assert.AreEqual(1, first.Value.Id);
+            Assert.AreEqual("a", first.Value.Name);
+            Assert.AreEqual(2, second.Value.Id);
+            Assert.AreEqual("b", second.Value.Name);
+            Assert.AreEqual(3, third.Value.Id);
+            Assert.AreEqual("c", third.Value.Name);
+            Assert.AreEqual(4, fourth.Value.Id);
+            Assert.AreEqual("d", fourth.Value.Name);
             Assert.IsNull(fourth.Next);
         }
     }

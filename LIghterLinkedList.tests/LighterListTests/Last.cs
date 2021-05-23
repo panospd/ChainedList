@@ -13,7 +13,7 @@ namespace LIghterLinkedList.tests.LighterListTests
 
             var result = sut.Tail;
 
-            Assert.AreEqual(result.Value, 4);
+            Assert.AreEqual(4, result.Value);
         }
 
         [Test]
