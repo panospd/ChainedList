@@ -92,6 +92,14 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
+        /// True if List contains any nodes
+        /// </summary>
+        public bool Any()
+        {
+            return !IsEmpty;
+        }
+
+        /// <summary>
         /// Finds the first node that matches predicate.
         /// </summary>
         public LighterNode<T> Find(Func<LighterNode<T>, bool> predicate)
