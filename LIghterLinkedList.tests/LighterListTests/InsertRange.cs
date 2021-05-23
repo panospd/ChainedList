@@ -9,7 +9,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenListIsEmpty_ShouldInsertItems()
         {
-            var sut = new LigherList<int>();
+            var sut = new LighterList<int>();
 
             sut.InsertRange(new List<int> { 1, 10, 19 });
 
@@ -26,7 +26,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalled_ShouldInsertItemsAtEnd()
         {
-            var sut = new LigherList<int>(new List<int> { 1, 2 });
+            var sut = new LighterList<int>(new List<int> { 1, 2 });
 
             sut.InsertRange(new List<int> { 4, 10 });
 

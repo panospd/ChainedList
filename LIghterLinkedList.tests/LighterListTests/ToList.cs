@@ -9,7 +9,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalled_ReturnsFlatList()
         {
-            var sut = new LigherList<int>(new List<int> { 1, 2, 3, 4 });
+            var sut = new LighterList<int>(new List<int> { 1, 2, 3, 4 });
 
             var result = sut.ToList();
 
@@ -25,7 +25,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithObjectNodeValue_ReturnsFlatList()
         {
-            var sut = new LigherList<Person>(new List<Person>
+            var sut = new LighterList<Person>(new List<Person>
                 {
                     new Person("Panos", "Anastasiadis"),
                     new Person("John", "Smith")
@@ -45,7 +45,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenListIsEmpty_ShouldReturnAnEmptyList()
         {
-            var sut = new LigherList<int>(new List<int>());
+            var sut = new LighterList<int>(new List<int>());
 
             var result = sut.ToList();
 

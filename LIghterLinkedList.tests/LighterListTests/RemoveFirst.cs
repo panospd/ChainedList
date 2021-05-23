@@ -9,7 +9,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalled_ShouldRemoveHead()
         {
-            var sut = new LigherList<int>(new List<int> { 1, 2, 4, 10 });
+            var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10 });
 
             sut.RemoveFirst();
 
@@ -25,7 +25,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledForListWithOneNode_ShouldEmptyList()
         {
-            var sut = new LigherList<int>(new List<int> { 1 });
+            var sut = new LighterList<int>(new List<int> { 1 });
 
             sut.RemoveFirst();
 

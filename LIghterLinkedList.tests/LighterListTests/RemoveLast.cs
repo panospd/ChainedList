@@ -9,7 +9,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalled_ShouldRemoveLastNode()
         {
-            var sut = new LigherList<int>(new List<int> { 1, 2, 4, 10 });
+            var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10 });
 
             sut.RemoveLast();
 
@@ -25,7 +25,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledAndEmptyList_ShouldReturn()
         {
-            var sut = new LigherList<int>();
+            var sut = new LighterList<int>();
 
             sut.RemoveLast();
 
@@ -35,7 +35,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledListHasOneNode_ListShouldBeEmpty()
         {
-            var sut = new LigherList<int>(new List<int> { 1 });
+            var sut = new LighterList<int>(new List<int> { 1 });
 
             sut.RemoveLast();
 

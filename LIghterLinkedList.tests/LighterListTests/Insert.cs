@@ -9,7 +9,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenListIsEmpty_ShouldInsertItem()
         {
-            var sut = new LigherList<int>();
+            var sut = new LighterList<int>();
 
             sut.Insert(10);
 
@@ -20,7 +20,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalled_ShouldInsertItemAtEnd()
         {
-            var sut = new LigherList<int>(new List<int> { 1, 2, 4 });
+            var sut = new LighterList<int>(new List<int> { 1, 2, 4 });
 
             sut.Insert(10);
 

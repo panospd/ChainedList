@@ -9,9 +9,9 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenListIsEmpty_ShouldInsertItems()
         {
-            var sut = new LigherList<int>();
+            var sut = new LighterList<int>();
 
-            sut.InsertRangeAfter(new List<int> { 1, 10, 19 }, sut.Head);
+            sut.InsertRangeAfter(sut.Head, new List<int> { 1, 10, 19 });
 
             var first = sut.Head;
             var second = first.Next;
@@ -25,9 +25,9 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenListIsEmptyWithPredicate_ShouldInsertItems()
         {
-            var sut = new LigherList<int>();
+            var sut = new LighterList<int>();
 
-            sut.InsertRangeAfter(new List<int> { 1, 10, 19 }, node => object.ReferenceEquals(node, sut.Head));
+            sut.InsertRangeAfter(node => node == sut.Head, new List<int> { 1, 10, 19 });
 
             var first = sut.Head;
             var second = first.Next;
@@ -41,9 +41,9 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalled_ShouldInsertItemsAfterNode()
         {
-            var sut = new LigherList<int>(new List<int> { 1, 2 });
+            var sut = new LighterList<int>(new List<int> { 1, 2 });
 
-            sut.InsertRangeAfter(new List<int> { 4, 10 }, sut.Head);
+            sut.InsertRangeAfter(sut.Head, new List<int> { 4, 10 });
 
             var first = sut.Head;
             var second = first.Next;
@@ -59,9 +59,9 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithPredicate_ShouldInsertItemsAfterNode()
         {
-            var sut = new LigherList<int>(new List<int> { 1, 2 });
+            var sut = new LighterList<int>(new List<int> { 1, 2 });
 
-            sut.InsertRangeAfter(new List<int> { 4, 10 }, n => n.Value == 1);
+            sut.InsertRangeAfter(n => n.Value == 1, new List<int> { 4, 10 });
 
             var first = sut.Head;
             var second = first.Next;

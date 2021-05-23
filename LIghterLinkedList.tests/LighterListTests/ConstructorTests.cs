@@ -9,7 +9,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCreatingFromList_CreatesNewLighterList()
         {
-            var sut = new LigherList<int>(new List<int> { 1, 2, 4 });
+            var sut = new LighterList<int>(new List<int> { 1, 2, 4 });
 
             var head = sut.Head;
             var second = head.Next;

@@ -9,7 +9,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenUsed_ShouldReturnLastNode()
         {
-            var sut = new LigherList<int>(new List<int> { 1, 2, 4 });
+            var sut = new LighterList<int>(new List<int> { 1, 2, 4 });
 
             var result = sut.Tail;
 
@@ -19,7 +19,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenUsedAndListIsEmpty_ShouldReturnNull()
         {
-            var sut = new LigherList<int>();
+            var sut = new LighterList<int>();
 
             var result = sut.Tail;
 

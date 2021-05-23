@@ -9,7 +9,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalled_ShouldRemoveNode()
         {
-            var sut = new LigherList<int>(new List<int> { 1, 2, 4, 10 });
+            var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10 });
 
             sut.Remove(n => n.Value == 4);
 
@@ -25,7 +25,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledAndMatchesHead_ShouldRemoveHead()
         {
-            var sut = new LigherList<int>(new List<int> { 1, 2, 4, 10 });
+            var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10 });
 
             sut.Remove(n => n.Value == 1);
 
@@ -41,7 +41,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithRefNode_ShouldRemoveNode()
         {
-            var sut = new LigherList<int>(new List<int> { 1, 2, 4, 10 });
+            var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10 });
 
             sut.Remove(sut.Head.Next);
 
@@ -57,7 +57,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithRefNodeAndIsHead_ShouldRemoveHead()
         {
-            var sut = new LigherList<int>(new List<int> { 1, 2, 4, 10 });
+            var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10 });
 
             sut.Remove(sut.Head);
 

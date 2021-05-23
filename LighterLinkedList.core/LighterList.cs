@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace LighterLinkedList.core
 {
-    public class LigherList<T>
+    public class LighterList<T>
     {
         private LighterNode<T> _head = null;
 
-        public LigherList()
+        public LighterList()
         {
             _head = null;
         }
 
-        public LigherList(List<T> items)
+        public LighterList(List<T> items)
         {
             var current = _head;
             LighterNode<T> previous = null;
@@ -175,7 +175,7 @@ namespace LighterLinkedList.core
         /// Inserts element after matching LighterNode<T> in LighterList<LighterNode<T>>. 
         /// If no matching LighterNode<T> found, will insert at the end of LighterList<LighterNode<T>>   
         /// </summary>
-        public void InsertAfter(T element, Func<LighterNode<T>, bool> predicate)
+        public void InsertAfter(Func<LighterNode<T>, bool> predicate, T element)
         {
             var target= Find(predicate);
             InsertElementAfter(element, target);
@@ -185,7 +185,7 @@ namespace LighterLinkedList.core
         /// Inserts element after specified LighterNode<T> in LighterList<LighterNode<T>>. 
         /// If no matching LighterNode<T> found, will insert at the end of LighterList<LighterNode<T>>   
         /// </summary>
-        public void InsertAfter(T element, LighterNode<T> node)
+        public void InsertAfter(LighterNode<T> node, T element)
         {
             var target = FindReferenceOf(node);
             InsertElementAfter(element, target);
@@ -195,35 +195,27 @@ namespace LighterLinkedList.core
         /// Inserts IEnumerable<T> elements after specified LighterNode<T> in LighterList<LighterNode<T>>. 
         /// If no matching LighterNode<T> found, will insert at the end of LighterList<LighterNode<T>>   
         /// </summary>
-        public void InsertRangeAfter(IEnumerable<T> elements, LighterNode<T> node)
+        public void InsertRangeAfter(LighterNode<T> node, IEnumerable<T> elements)
         {
             var target = FindReferenceOf(node);
-            InsertElementsAfter(elements, target);
+            InsertElementsAfter(target, elements);
         }
 
         /// <summary>
         /// Inserts IEnumerable<T> elements after matching LighterNode<T> in LighterList<LighterNode<T>>. 
         /// If no matching LighterNode<T> found, will insert at the end of LighterList<LighterNode<T>>   
         /// </summary>
-        public void InsertRangeAfter(IEnumerable<T> elements, Func<LighterNode<T>, bool> predicate)
+        public void InsertRangeAfter(Func<LighterNode<T>, bool> predicate, IEnumerable<T> elements)
         {
             var target = Find(predicate);
-            InsertElementsAfter(elements, target);
-        }
-
-        private void InsertElementsAfter(IEnumerable<T> elements, LighterNode<T> target)
-        {
-            foreach (var element in elements)
-            {
-                target = InsertElementAfter(element, target);
-            }
+            InsertElementsAfter(target, elements);
         }
 
         /// <summary>
         /// Inserts element before matching LighterNode<T> in LighterList<LighterNode<T>>. 
         /// If no matching LighterNode<T> found, will insert at the end of LighterList<LighterNode<T>>   
         /// </summary>
-        public void InsertBefore(T element, Func<LighterNode<T>, bool> predicate)
+        public void InsertBefore(Func<LighterNode<T>, bool> predicate, T element)
         {
             var target = Find(predicate);
             InsertElementBefore(element, target);
@@ -233,7 +225,7 @@ namespace LighterLinkedList.core
         /// Inserts element before specified LighterNode<T> in LighterList<LighterNode<T>>. 
         /// If no matching LighterNode<T> found, will insert at the end of LighterList<LighterNode<T>>   
         /// </summary>
-        public void InsertBefore(T element, LighterNode<T> node)
+        public void InsertBefore(LighterNode<T> node, T element)
         {
             var target = FindReferenceOf(node);
             InsertElementBefore(element, target);
@@ -273,6 +265,14 @@ namespace LighterLinkedList.core
             }
 
             return flatList;
+        }
+
+        private void InsertElementsAfter(LighterNode<T> target, IEnumerable<T> elements)
+        {
+            foreach (var element in elements)
+            {
+                target = InsertElementAfter(element, target);
+            }
         }
 
         private void InsertElementBefore(T element, LighterNode<T> target)

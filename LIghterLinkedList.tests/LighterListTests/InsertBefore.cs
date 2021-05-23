@@ -9,9 +9,9 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithPredicate_ShouldInsertItemBeforeMatchingNode()
         {
-            var sut = new LigherList<int>(new List<int> { 1, 2, 4 });
+            var sut = new LighterList<int>(new List<int> { 1, 2, 4 });
 
-            sut.InsertBefore(10, node => node.Value == 2);
+            sut.InsertBefore(node => node.Value == 2, 10);
 
             var first = sut.Head;
             var second = first.Next;
@@ -27,9 +27,9 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithPredicateAndWithNoMatchingNode_ShouldInsertItemAtEnd()
         {
-            var sut = new LigherList<int>(new List<int> { 1, 2, 4 });
+            var sut = new LighterList<int>(new List<int> { 1, 2, 4 });
 
-            sut.InsertBefore(10, node => node.Value == 8);
+            sut.InsertBefore(node => node.Value == 8, 10);
 
             var first = sut.Head;
             var second = first.Next;
@@ -45,9 +45,9 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithPredicateAndWithEmptyList_ShouldInsertItemAtEnd()
         {
-            var sut = new LigherList<int>();
+            var sut = new LighterList<int>();
 
-            sut.InsertBefore(10, node => node.Value == 1);
+            sut.InsertBefore(node => node.Value == 1, 10);
 
             var first = sut.Head;
             Assert.AreEqual(first.Value, 10);
@@ -57,10 +57,10 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithRefNode_ShouldInsertItemBeforeMatchingNode()
         {
-            var sut = new LigherList<int>(new List<int> { 1, 2, 4 });
+            var sut = new LighterList<int>(new List<int> { 1, 2, 4 });
             var first = sut.Head;
 
-            sut.InsertBefore(10, first.Next.Next);
+            sut.InsertBefore(first.Next.Next, 10);
 
             var second = first.Next;
             var third = second.Next;
@@ -75,10 +75,10 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithRefNodeAndWithNoMatchingNode_ShouldInsertItemAtEnd()
         {
-            var sut = new LigherList<int>(new List<int> { 1, 2, 4 });
+            var sut = new LighterList<int>(new List<int> { 1, 2, 4 });
             var node = new LighterNode<int>(10);
 
-            sut.InsertBefore(10, node);
+            sut.InsertBefore(node, 10);
 
             var first = sut.Head;
             var second = first.Next;
@@ -94,9 +94,9 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithHead_ShouldInsertItemAtStart()
         {
-            var sut = new LigherList<int>(new List<int> { 1, 2, 4 });
+            var sut = new LighterList<int>(new List<int> { 1, 2, 4 });
 
-            sut.InsertBefore(10, sut.Head);
+            sut.InsertBefore(sut.Head, 10);
 
             var first = sut.Head;
             var second = first.Next;
