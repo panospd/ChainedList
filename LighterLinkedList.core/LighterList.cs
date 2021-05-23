@@ -120,12 +120,29 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
-        /// Removes specified LighterNode<T> from LighterList<LighterNode<T>>.        
+        /// Removes specified LighterNode<T> node from LighterList<LighterNode<T>>.        
         /// </summary>
         public void Remove(LighterNode<T> node)
         {
             var target = FindReferenceOf(node);
             RemoveNode(target);
+        }
+
+        /// <summary>
+        /// Removes specified IEnumerable<LighterNode<T>> nodes from LighterList<LighterNode<T>>.        
+        /// </summary>
+        public void RemoveAll(IEnumerable<LighterNode<T>> nodes)
+        {
+            foreach (var node in nodes)
+                Remove(node);
+        }
+
+        /// <summary>
+        /// Removes all IEnumerable<LighterNode<T>> nodes from LighterList<LighterNode<T>>.        
+        /// </summary>
+        public void RemoveAll()
+        {
+            _head = null;
         }
 
         /// <summary>
