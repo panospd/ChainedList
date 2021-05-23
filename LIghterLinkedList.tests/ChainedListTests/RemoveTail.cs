@@ -1,15 +1,15 @@
-﻿using LighterLinkedList.core;
+﻿using ChainedList.core;
 using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace LIghterLinkedList.tests.LighterListTests
+namespace ChainedList.tests.ChainedListTests
 {
     public class RemoveTail
     {
         [Test]
         public void WhenCalled_ShouldRemoveLastNode()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4, 10 });
 
             sut.RemoveTail();
 
@@ -25,7 +25,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledAndEmptyList_ShouldReturn()
         {
-            var sut = new LighterList<int>();
+            var sut = new ChainedList<int>();
 
             sut.RemoveTail();
 
@@ -35,7 +35,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledListHasOneNode_ListShouldBeEmpty()
         {
-            var sut = new LighterList<int>(new List<int> { 1 });
+            var sut = new ChainedList<int>(new List<int> { 1 });
 
             sut.RemoveTail();
 

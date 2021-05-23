@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace LIghterLinkedList.tests.LighterListTests
+namespace ChainedList.tests.ChainedListTests
 {
     public class Person
     {

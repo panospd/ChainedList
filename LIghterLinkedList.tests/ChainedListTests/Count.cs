@@ -1,15 +1,15 @@
-﻿using LighterLinkedList.core;
+﻿using ChainedList.core;
 using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace LIghterLinkedList.tests.LighterListTests
+namespace ChainedList.tests.ChainedListTests
 {
     public class Count
     {
         [Test]
         public void WhenListIsEmpty_ShouldReturn0()
         {
-            var sut = new LighterList<int>();
+            var sut = new ChainedList<int>();
 
             Assert.AreEqual(0, sut.Count);
         }
@@ -17,7 +17,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenListContainsNodes_ShouldReturnTotalNumberOfNodes()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4, 6 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4, 6 });
 
             Assert.AreEqual(4, sut.Count);
         }
@@ -25,7 +25,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenRemoveNode_CountShouldDecrement()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4, 6 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4, 6 });
             var originalCount = sut.Count;
 
             sut.Remove(sut.Head);

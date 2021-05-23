@@ -1,15 +1,15 @@
-﻿using LighterLinkedList.core;
+﻿using ChainedList.core;
 using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace LIghterLinkedList.tests.LighterListTests
+namespace ChainedList.tests.ChainedListTests
 {
     public class ToList
     {
         [Test]
         public void WhenCalled_ReturnsFlatList()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 3, 4 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 3, 4 });
 
             var result = sut.ToList();
 
@@ -25,7 +25,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithObjectNodeValue_ReturnsFlatList()
         {
-            var sut = new LighterList<Person>(new List<Person>
+            var sut = new ChainedList<Person>(new List<Person>
                 {
                     new Person("Panos", "Anastasiadis"),
                     new Person("John", "Smith")
@@ -45,7 +45,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenListIsEmpty_ShouldReturnAnEmptyList()
         {
-            var sut = new LighterList<int>(new List<int>());
+            var sut = new ChainedList<int>(new List<int>());
 
             var result = sut.ToList();
 

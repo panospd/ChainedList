@@ -1,15 +1,15 @@
-﻿using LighterLinkedList.core;
+﻿using ChainedList.core;
 using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace LIghterLinkedList.tests.LighterListTests
+namespace ChainedList.tests.ChainedListTests
 {
     public partial class Find
     {
         [Test]
         public void WhenCalled_ReturnsFirstMatch()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4 });
 
             var result = sut.Find(a => a.Value == 2);
 
@@ -20,7 +20,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithNoMatch_ReturnsNUll()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4 });
 
             var result = sut.Find(a => a.Value == 5);
 
@@ -30,7 +30,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithTElement_ReturnsFirstMatch()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4 });
 
             var result = sut.Find(2);
 
@@ -41,7 +41,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithObjectTElement_ReturnsFirstMatch()
         {
-            var sut = new LighterList<Person>(new List<Person> 
+            var sut = new ChainedList<Person>(new List<Person> 
             {
                 new Person(1, "John", "Smith"),
                 new Person(2, "Maria", "db"),
@@ -59,7 +59,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithObjectTElementAndPredicate_ReturnsFirstMatch()
         {
-            var sut = new LighterList<Person>(new List<Person>
+            var sut = new ChainedList<Person>(new List<Person>
             {
                 new Person(1, "John", "Smith"),
                 new Person(2, "Maria", "db"),
@@ -77,7 +77,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithObjectTElementAndPredicateAndNoMatch_ReturnsNull()
         {
-            var sut = new LighterList<Person>(new List<Person>
+            var sut = new ChainedList<Person>(new List<Person>
             {
                 new Person(1, "John", "Smith"),
                 new Person(2, "Maria", "db"),
@@ -93,7 +93,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithObjectTElementWithOverrideEquals_ReturnsFirstMatch()
         {
-            var sut = new LighterList<StrongPerson>(new List<StrongPerson>
+            var sut = new ChainedList<StrongPerson>(new List<StrongPerson>
             {
                 new StrongPerson(1, "John", "Smith"),
                 new StrongPerson(2, "Maria", "db"),
@@ -111,7 +111,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithObjectTElementAndNoMatchFound_ReturnsNull()
         {
-            var sut = new LighterList<Person>(new List<Person>
+            var sut = new ChainedList<Person>(new List<Person>
             {
                 new Person(1, "John", "Smith"),
                 new Person(2, "Maria", "db"),

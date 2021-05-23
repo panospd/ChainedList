@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LighterLinkedList.core\LighterLinkedList.core.csproj" />
+    <ProjectReference Include="..\LighterLinkedList.core\ChainedList.core.csproj" />
   </ItemGroup>
 
 </Project>

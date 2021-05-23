@@ -1,17 +1,17 @@
-﻿using LighterLinkedList.core;
+﻿using ChainedList.core;
 using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace LIghterLinkedList.tests.LighterListTests
+namespace ChainedList.tests.ChainedListTests
 {
     public class RemoveAll
     {
         [Test]
         public void WhenCalledWithSpecificNodes_ShouldRemoveNodes()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4, 10 });
 
-            sut.RemoveAll(new List<LighterNode<int>> { sut.Head, sut.Head.Next });
+            sut.RemoveAll(new List<ChainedNode<int>> { sut.Head, sut.Head.Next });
 
             var first = sut.Head;
             var second = first.Next;
@@ -23,7 +23,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithSpecificElements_ShouldRemoveFirstMatchingNodesContainingElements()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10, 1, 4 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4, 10, 1, 4 });
 
             sut.RemoveAll(new List<int> { 1, 4 });
 
@@ -41,9 +41,9 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithNonConsecutiveNodes_ShouldRemoveNodes()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4, 10 });
 
-            sut.RemoveAll(new List<LighterNode<int>> { sut.Head, sut.Head.Next.Next });
+            sut.RemoveAll(new List<ChainedNode<int>> { sut.Head, sut.Head.Next.Next });
 
             var first = sut.Head;
             var second = first.Next;
@@ -55,9 +55,9 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithSpecificNodesAndContainNoMatching_ShouldRemoveOnlyMatchingNodes()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4, 10 });
 
-            sut.RemoveAll(new List<LighterNode<int>> { sut.Head, sut.Head.Next.Next, new LighterNode<int>(2)});
+            sut.RemoveAll(new List<ChainedNode<int>> { sut.Head, sut.Head.Next.Next, new ChainedNode<int>(2)});
 
             var first = sut.Head;
             var second = first.Next;
@@ -69,9 +69,9 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithSpecificNodesAndListEmpty_ShouldRemoveNodes()
         {
-            var sut = new LighterList<int>();
+            var sut = new ChainedList<int>();
 
-            sut.RemoveAll(new List<LighterNode<int>> { sut.Head });
+            sut.RemoveAll(new List<ChainedNode<int>> { sut.Head });
 
             Assert.IsTrue(sut.IsEmpty);
         }
@@ -79,7 +79,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithNoNodes_ShouldRemoveAllNodes()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4, 10 });
 
             sut.RemoveAll();
 
@@ -89,7 +89,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithElementPredicate_ShouldRemoveAllMatchingNodes()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10, 1, 4 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4, 10, 1, 4 });
 
             sut.RemoveAll(v => v == 1 || v == 4);
 
@@ -104,7 +104,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithElementPredicateAndMatchingNodesAreConsecutive_ShouldRemoveAllMatchingNodes()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10, 1, 4 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4, 10, 1, 4 });
 
             sut.RemoveAll(v => v == 1 || v == 2);
 
@@ -121,7 +121,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithElementPredicateAndNoMatch_ShouldNotRemoveAnyElement()
         {
-            var sut = new LighterList<int>(new List<int> { 2, 10 });
+            var sut = new ChainedList<int>(new List<int> { 2, 10 });
 
             sut.RemoveAll(v => v == 1 || v == 4);
 

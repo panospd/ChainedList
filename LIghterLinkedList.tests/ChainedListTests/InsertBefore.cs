@@ -1,17 +1,17 @@
-﻿using LighterLinkedList.core;
+﻿using ChainedList.core;
 using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace LIghterLinkedList.tests.LighterListTests
+namespace ChainedList.tests.ChainedListTests
 {
-    public class InsertAfter
+    public class InsertBefore
     {
         [Test]
-        public void WhenCalledWithPredicate_ShouldInsertItemAfterMatchingNode()
+        public void WhenCalledWithPredicate_ShouldInsertItemBeforeMatchingNode()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4 });
 
-            sut.InsertAfter(node => node.Value == 1, 10);
+            sut.InsertBefore(node => node.Value == 2, 10);
 
             var first = sut.Head;
             var second = first.Next;
@@ -25,11 +25,11 @@ namespace LIghterLinkedList.tests.LighterListTests
         }
 
         [Test]
-        public void WhenCalledWithPredicateAndNoMatchingNode_ShouldInsertItemAtEnd()
+        public void WhenCalledWithPredicateAndWithNoMatchingNode_ShouldInsertItemAtEnd()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4 });
 
-            sut.InsertAfter(node => node.Value == 8, 10);
+            sut.InsertBefore(node => node.Value == 8, 10);
 
             var first = sut.Head;
             var second = first.Next;
@@ -43,23 +43,24 @@ namespace LIghterLinkedList.tests.LighterListTests
         }
 
         [Test]
-        public void WhenCalledWithPredicateAndEmptyList_ShouldInsertItemAtEnd()
+        public void WhenCalledWithPredicateAndWithEmptyList_ShouldInsertItemAtEnd()
         {
-            var sut = new LighterList<int>();
+            var sut = new ChainedList<int>();
 
-            sut.InsertAfter(node => node.Value == 1, 10);
+            sut.InsertBefore(node => node.Value == 1, 10);
 
-            Assert.AreEqual(10, sut.Head.Value);
-            Assert.IsNull(sut.Head.Next);
+            var first = sut.Head;
+            Assert.AreEqual(10, first.Value);
+            Assert.IsNull(first.Next);
         }
 
         [Test]
-        public void WhenCalledWithRefNode_ShouldInsertItemAfterMatchingNode()
+        public void WhenCalledWithRefNode_ShouldInsertItemBeforeMatchingNode()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4 });
             var first = sut.Head;
 
-            sut.InsertAfter(first.Next, 10);
+            sut.InsertBefore(first.Next.Next, 10);
 
             var second = first.Next;
             var third = second.Next;
@@ -72,12 +73,12 @@ namespace LIghterLinkedList.tests.LighterListTests
         }
 
         [Test]
-        public void WhenCalledWithRefNodeAndNoMatchingNode_ShouldInsertItemAtEnd()
+        public void WhenCalledWithRefNodeAndWithNoMatchingNode_ShouldInsertItemAtEnd()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4 });
-            var node = new LighterNode<int>(2);
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4 });
+            var node = new ChainedNode<int>(10);
 
-            sut.InsertAfter(node, 10);
+            sut.InsertBefore(node, 10);
 
             var first = sut.Head;
             var second = first.Next;
@@ -91,20 +92,20 @@ namespace LIghterLinkedList.tests.LighterListTests
         }
 
         [Test]
-        public void WhenCalledWithTailNode_ShouldInsertItemAtEnd()
+        public void WhenCalledWithHead_ShouldInsertItemAtStart()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4 });
 
-            sut.InsertAfter(sut.Tail, 10);
+            sut.InsertBefore(sut.Head, 10);
 
             var first = sut.Head;
             var second = first.Next;
             var third = second.Next;
             var fourth = third.Next;
-            Assert.AreEqual(1, first.Value);
-            Assert.AreEqual(2, second.Value);
-            Assert.AreEqual(4, third.Value);
-            Assert.AreEqual(10, fourth.Value);
+            Assert.AreEqual(10, first.Value);
+            Assert.AreEqual(1, second.Value);
+            Assert.AreEqual(2, third.Value);
+            Assert.AreEqual(4, fourth.Value);
             Assert.IsNull(fourth.Next);
         }
     }

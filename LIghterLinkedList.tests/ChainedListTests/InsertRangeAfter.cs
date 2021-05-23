@@ -1,15 +1,15 @@
-﻿using LighterLinkedList.core;
+﻿using ChainedList.core;
 using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace LIghterLinkedList.tests.LighterListTests
+namespace ChainedList.tests.ChainedListTests
 {
     public class InsertRangeAfter
     {
         [Test]
         public void WhenListIsEmpty_ShouldInsertItems()
         {
-            var sut = new LighterList<int>();
+            var sut = new ChainedList<int>();
 
             sut.InsertRangeAfter(sut.Head, new List<int> { 1, 10, 19 });
 
@@ -25,7 +25,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenListIsEmptyWithPredicate_ShouldInsertItems()
         {
-            var sut = new LighterList<int>();
+            var sut = new ChainedList<int>();
 
             sut.InsertRangeAfter(node => node == sut.Head, new List<int> { 1, 10, 19 });
 
@@ -41,7 +41,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalled_ShouldInsertItemsAfterNode()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2 });
 
             sut.InsertRangeAfter(sut.Head, new List<int> { 4, 10 });
 
@@ -59,7 +59,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithPredicate_ShouldInsertItemsAfterNode()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2 });
 
             sut.InsertRangeAfter(n => n.Value == 1, new List<int> { 4, 10 });
 
