@@ -2,27 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace LighterLinkedList.core
+namespace ChainedList.core
 {
-    public class LighterList<T>
+    public class ChainedList<T>
     {
-        private LighterNode<T> _head = null;
+        private ChainedNode<T> _head = null;
 
-        public LighterList()
+        public ChainedList()
         {
             _head = null;
         }
 
-        public LighterList(IEnumerable<T> initialValues)
+        public ChainedList(IEnumerable<T> initialValues)
         {
             var current = _head;
-            LighterNode<T> previous = null;
+            ChainedNode<T> previous = null;
 
             foreach(var initialValue in initialValues)
             {
                 if (current == null)
                 {
-                    current = new LighterNode<T>(initialValue);
+                    current = new ChainedNode<T>(initialValue);
                     _head = current;
                     continue;
                 }
@@ -30,7 +30,7 @@ namespace LighterLinkedList.core
                 if (current.Value != null)
                 {
                     previous = current;
-                    current = new LighterNode<T>(initialValue);
+                    current = new ChainedNode<T>(initialValue);
                 }
 
                 if (previous != null)
@@ -41,7 +41,7 @@ namespace LighterLinkedList.core
         /// <summary>
         /// Returns the head(first) node.
         /// </summary>
-        public LighterNode<T> Head => _head;
+        public ChainedNode<T> Head => _head;
 
         /// <summary>
         /// Returns true if list is empty
@@ -74,7 +74,7 @@ namespace LighterLinkedList.core
         /// <summary>
         /// Returns the tail(last) node.
         /// </summary>
-        public LighterNode<T> Tail { 
+        public ChainedNode<T> Tail { 
             get 
             {
                 if (_head == null)
@@ -102,7 +102,7 @@ namespace LighterLinkedList.core
         /// <summary>
         /// Finds the first node that matches predicate.
         /// </summary>
-        public LighterNode<T> Find(Func<LighterNode<T>, bool> predicate)
+        public ChainedNode<T> Find(Func<ChainedNode<T>, bool> predicate)
         {
             var current = _head;
 
@@ -120,7 +120,7 @@ namespace LighterLinkedList.core
         /// <summary>
         /// Finds the first node that matches predicate.
         /// </summary>
-        public LighterNode<T> Find(Func<T, bool> predicate)
+        public ChainedNode<T> Find(Func<T, bool> predicate)
         {
             var current = _head;
 
@@ -138,7 +138,7 @@ namespace LighterLinkedList.core
         /// <summary>
         /// Finds the first node that contains the specified value.
         /// </summary>
-        public LighterNode<T> Find(T value)
+        public ChainedNode<T> Find(T value)
         {
             var current = _head;
 
@@ -160,7 +160,7 @@ namespace LighterLinkedList.core
         {
             var current = _head;
 
-            _head = new LighterNode<T>(value)
+            _head = new ChainedNode<T>(value)
             {
                 Next = current
             };
@@ -180,7 +180,7 @@ namespace LighterLinkedList.core
         /// <summary>
         /// Removes first matching node based on predicate.        
         /// </summary>
-        public void Remove(Func<LighterNode<T>, bool> predicate)
+        public void Remove(Func<ChainedNode<T>, bool> predicate)
         {
             var target = Find(predicate);
             RemoveNode(target);
@@ -189,7 +189,7 @@ namespace LighterLinkedList.core
         /// <summary>
         /// Removes specified node.        
         /// </summary>
-        public void Remove(LighterNode<T> node)
+        public void Remove(ChainedNode<T> node)
         {
             var target = FindReferenceOf(node);
             RemoveNode(target);
@@ -207,7 +207,7 @@ namespace LighterLinkedList.core
         /// <summary>
         /// Removes all specified nodes.        
         /// </summary>
-        public void RemoveAll(IEnumerable<LighterNode<T>> nodes)
+        public void RemoveAll(IEnumerable<ChainedNode<T>> nodes)
         {
             foreach (var node in nodes)
                 Remove(node);
@@ -255,9 +255,9 @@ namespace LighterLinkedList.core
         public void Insert(T value)
         {
             if (Head == null)
-                _head = new LighterNode<T>(value);
+                _head = new ChainedNode<T>(value);
             else
-                Tail.Next = new LighterNode<T>(value);
+                Tail.Next = new ChainedNode<T>(value);
         }
 
         /// <summary>
@@ -273,7 +273,7 @@ namespace LighterLinkedList.core
         /// Inserts value after first matching node based on predicate. 
         /// If no matching node found, will insert at the end of list   
         /// </summary>
-        public void InsertAfter(Func<LighterNode<T>, bool> predicate, T value)
+        public void InsertAfter(Func<ChainedNode<T>, bool> predicate, T value)
         {
             var target= Find(predicate);
             InsertValueAfter(target, value);
@@ -283,7 +283,7 @@ namespace LighterLinkedList.core
         /// Inserts value after specified node. 
         /// If no matching node found, will insert at the end of list.   
         /// </summary>
-        public void InsertAfter(LighterNode<T> node, T value)
+        public void InsertAfter(ChainedNode<T> node, T value)
         {
             var target = FindReferenceOf(node);
             InsertValueAfter(target, value);
@@ -293,7 +293,7 @@ namespace LighterLinkedList.core
         /// Inserts values after specified node. 
         /// If no matching node found, will insert at the end of list.
         /// </summary>
-        public void InsertRangeAfter(LighterNode<T> node, IEnumerable<T> values)
+        public void InsertRangeAfter(ChainedNode<T> node, IEnumerable<T> values)
         {
             var target = FindReferenceOf(node);
             InsertValuesAfter(target, values);
@@ -303,7 +303,7 @@ namespace LighterLinkedList.core
         /// Inserts values after first matching node based on predicate. 
         /// If no matching matching node found, will insert at the end of list.   
         /// </summary>
-        public void InsertRangeAfter(Func<LighterNode<T>, bool> predicate, IEnumerable<T> values)
+        public void InsertRangeAfter(Func<ChainedNode<T>, bool> predicate, IEnumerable<T> values)
         {
             var target = Find(predicate);
             InsertValuesAfter(target, values);
@@ -313,7 +313,7 @@ namespace LighterLinkedList.core
         /// Inserts value before first matching node based on predicate. 
         /// If no matching node found, will insert at the end of list.   
         /// </summary>
-        public void InsertBefore(Func<LighterNode<T>, bool> predicate, T value)
+        public void InsertBefore(Func<ChainedNode<T>, bool> predicate, T value)
         {
             var target = Find(predicate);
             InsertValueBefore(target, value);
@@ -323,7 +323,7 @@ namespace LighterLinkedList.core
         /// Inserts value before specified node. 
         /// If no matching node found, will insert at the end of list.   
         /// </summary>
-        public void InsertBefore(LighterNode<T> node, T value)
+        public void InsertBefore(ChainedNode<T> node, T value)
         {
             var target = FindReferenceOf(node);
             InsertValueBefore(target, value);
@@ -333,7 +333,7 @@ namespace LighterLinkedList.core
         /// Inserts values before specified node. 
         /// If no matching node found, will insert at the end of list.   
         /// </summary>
-        public void InsertRangeBefore(LighterNode<T> node, IEnumerable<T> values)
+        public void InsertRangeBefore(ChainedNode<T> node, IEnumerable<T> values)
         {
             var target = FindReferenceOf(node);
             InsertValuesBefore(target, values);
@@ -343,7 +343,7 @@ namespace LighterLinkedList.core
         /// Inserts values before first matching node based on predicate. 
         /// If no matching node found, will insert at the end of list  
         /// </summary>
-        public void InsertRangeBefore(Func<LighterNode<T>, bool> predicate, IEnumerable<T> values)
+        public void InsertRangeBefore(Func<ChainedNode<T>, bool> predicate, IEnumerable<T> values)
         {
             var target = Find(predicate);
             InsertValuesBefore(target, values);
@@ -385,7 +385,7 @@ namespace LighterLinkedList.core
             return flatList;
         }
 
-        private void RemoveNode(LighterNode<T> target)
+        private void RemoveNode(ChainedNode<T> target)
         {
             if (target == null)
                 return;
@@ -401,7 +401,7 @@ namespace LighterLinkedList.core
             previous.Next = target.Next;
         }
 
-        private void InsertValuesBefore(LighterNode<T> target, IEnumerable<T> values)
+        private void InsertValuesBefore(ChainedNode<T> target, IEnumerable<T> values)
         {
             var valuesList = values.ToList();
 
@@ -411,7 +411,7 @@ namespace LighterLinkedList.core
             }
         }
 
-        private void InsertValuesAfter(LighterNode<T> target, IEnumerable<T> values)
+        private void InsertValuesAfter(ChainedNode<T> target, IEnumerable<T> values)
         {
             foreach (var value in values)
             {
@@ -419,7 +419,7 @@ namespace LighterLinkedList.core
             }
         }
 
-        private LighterNode<T> InsertValueBefore(LighterNode<T> target, T value)
+        private ChainedNode<T> InsertValueBefore(ChainedNode<T> target, T value)
         {
             if (target == null)
             {
@@ -438,7 +438,7 @@ namespace LighterLinkedList.core
             return InsertValueAfter(previous, value);
         }
 
-        private LighterNode<T> InsertValueAfter(LighterNode<T> target, T value)
+        private ChainedNode<T> InsertValueAfter(ChainedNode<T> target, T value)
         {
             if (target == null)
             {
@@ -447,15 +447,15 @@ namespace LighterLinkedList.core
             }
 
             var originalNext = target.Next;
-            target.Next = new LighterNode<T>(value);
+            target.Next = new ChainedNode<T>(value);
             target.Next.Next = originalNext;
 
             return target.Next;
         }
 
-        private IEnumerable<LighterNode<T>> FindAll(Func<T, bool> predicate)
+        private IEnumerable<ChainedNode<T>> FindAll(Func<T, bool> predicate)
         {
-            var results = new List<LighterNode<T>>();
+            var results = new List<ChainedNode<T>>();
             var current = _head;
 
             while (current != null)
@@ -469,7 +469,7 @@ namespace LighterLinkedList.core
             return results;
         }
 
-        private LighterNode<T> FindReferenceOf(LighterNode<T> node)
+        private ChainedNode<T> FindReferenceOf(ChainedNode<T> node)
         {
             var current = _head;
 
@@ -484,7 +484,7 @@ namespace LighterLinkedList.core
             return null;
         }
 
-        private LighterNode<T> FindPreviousOf(LighterNode<T> node)
+        private ChainedNode<T> FindPreviousOf(ChainedNode<T> node)
         {
             var current = _head;
 

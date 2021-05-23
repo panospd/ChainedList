@@ -1,15 +1,15 @@
-﻿using LighterLinkedList.core;
+﻿using ChainedList.core;
 using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace LIghterLinkedList.tests.LighterListTests
+namespace ChainedList.tests.ChainedListTests
 {
     public class Remove
     {
         [Test]
         public void WhenCalled_ShouldRemoveNode()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4, 10 });
 
             sut.Remove(n => n.Value == 4);
 
@@ -25,7 +25,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenTElementPassed_ShouldRemoveFirstNodeContainingElement()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10, 2 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4, 10, 2 });
 
             sut.Remove(2);
 
@@ -43,7 +43,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledAndMatchesHead_ShouldRemoveHead()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4, 10 });
 
             sut.Remove(n => n.Value == 1);
 
@@ -59,7 +59,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledPassingElementAndMatchesHead_ShouldRemoveHead()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4, 10 });
 
             sut.Remove(1);
 
@@ -75,7 +75,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithRefNode_ShouldRemoveNode()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4, 10 });
 
             sut.Remove(sut.Head.Next);
 
@@ -91,7 +91,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithRefNodeAndIsHead_ShouldRemoveHead()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4, 10 });
 
             sut.Remove(sut.Head);
 
@@ -107,7 +107,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithRefNodeAndPassedElement_ShouldNodeContainingElement()
         {
-            var sut = new LighterList<Person>(new List<Person> 
+            var sut = new ChainedList<Person>(new List<Person> 
             {
                 new Person(1, "a", "e"),
                 new Person(2, "b", "f"),
@@ -132,7 +132,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithRefNodeAndPassedElementWithNoMatch_ShouldNotRemoveAnything()
         {
-            var sut = new LighterList<Person>(new List<Person>
+            var sut = new ChainedList<Person>(new List<Person>
             {
                 new Person(1, "a", "e"),
                 new Person(2, "b", "f"),

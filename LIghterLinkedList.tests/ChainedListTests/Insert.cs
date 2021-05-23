@@ -1,15 +1,15 @@
-﻿using LighterLinkedList.core;
+﻿using ChainedList.core;
 using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace LIghterLinkedList.tests.LighterListTests
+namespace ChainedList.tests.ChainedListTests
 {
     public class Insert
     {
         [Test]
         public void WhenListIsEmpty_ShouldInsertItem()
         {
-            var sut = new LighterList<int>();
+            var sut = new ChainedList<int>();
 
             sut.Insert(10);
 
@@ -20,7 +20,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalled_ShouldInsertItemAtEnd()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4 });
 
             sut.Insert(10);
 

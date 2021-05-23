@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LIghterLinkedList.tests.LighterListTests
+namespace ChainedList.tests.ChainedListTests
 {
     public partial class Find
     {

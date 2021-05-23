@@ -1,15 +1,15 @@
-﻿using LighterLinkedList.core;
+﻿using ChainedList.core;
 using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace LIghterLinkedList.tests.LighterListTests
+namespace ChainedList.tests.ChainedListTests
 {
     public class InsertRangeBefore
     {
         [Test]
         public void WhenCalled_ShouldInsertItemBeforeSpecifiedNode()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4 });
 
             sut.InsertRangeBefore(sut.Head.Next, new List<int> { 10, 11, 12 });
 
@@ -31,7 +31,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenListIsEmpty_ShouldInsertItemsToList()
         {
-            var sut = new LighterList<int>();
+            var sut = new ChainedList<int>();
 
             sut.InsertRangeBefore(sut.Head, new List<int> { 10, 11, 12 });
 
@@ -47,7 +47,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenTargetNodeIsHead_ShouldInsertItemsAtStart()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4 });
 
             sut.InsertRangeBefore(sut.Head, new List<int> { 10, 11, 12 });
 
@@ -69,7 +69,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithPredicate_ShouldInsertItemBeforeSpecifiedNode()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4 });
 
             sut.InsertRangeBefore(n => n.Value == 2, new List<int> { 10, 11, 12 });
 
@@ -91,7 +91,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithPredicateAndListIsEmpty_ShouldInsertItemsToList()
         {
-            var sut = new LighterList<int>();
+            var sut = new ChainedList<int>();
 
             sut.InsertRangeBefore(n => n == sut.Head, new List<int> { 10, 11, 12 });
 
@@ -107,7 +107,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenCalledWithPredicateAndTargetNodeIsHead_ShouldInsertItemsAtStart()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4 });
 
             sut.InsertRangeBefore(n => n.Value == 1, new List<int> { 10, 11, 12 });
 

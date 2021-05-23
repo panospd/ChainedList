@@ -1,15 +1,15 @@
-﻿using LighterLinkedList.core;
+﻿using ChainedList.core;
 using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace LIghterLinkedList.tests.LighterListTests
+namespace ChainedList.tests.ChainedListTests
 {
     public class IsEmptyAndAny
     {
         [Test]
         public void WhenListEsEmpty_ShouldReturnTrue()
         {
-            var sut = new LighterList<int>();
+            var sut = new ChainedList<int>();
 
             Assert.IsTrue(sut.IsEmpty);
             Assert.IsFalse(sut.Any());
@@ -18,7 +18,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenRemovesOnlyNOde_ShouldReturnTrue()
         {
-            var sut = new LighterList<int>(new List<int> { 1 });
+            var sut = new ChainedList<int>(new List<int> { 1 });
 
             Assert.IsFalse(sut.IsEmpty);
             Assert.IsTrue(sut.Any());
@@ -32,7 +32,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenListNotEmpty_ShouldReturnFalse()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2 });
 
             Assert.IsFalse(sut.IsEmpty);
             Assert.IsTrue(sut.Any());

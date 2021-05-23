@@ -1,15 +1,15 @@
-﻿using LighterLinkedList.core;
+﻿using ChainedList.core;
 using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace LIghterLinkedList.tests.LighterListTests
+namespace ChainedList.tests.ChainedListTests
 {
     public class Last
     {
         [Test]
         public void WhenUsed_ShouldReturnLastNode()
         {
-            var sut = new LighterList<int>(new List<int> { 1, 2, 4 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4 });
 
             var result = sut.Tail;
 
@@ -19,7 +19,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         [Test]
         public void WhenUsedAndListIsEmpty_ShouldReturnNull()
         {
-            var sut = new LighterList<int>();
+            var sut = new ChainedList<int>();
 
             var result = sut.Tail;
 
