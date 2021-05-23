@@ -197,7 +197,7 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
-        /// Removes specified IEnumerable<LighterNode<T>> nodes from LighterList<LighterNode<T>>.        
+        /// Removes specified  nodes from LighterList<LighterNode<T>>.        
         /// </summary>
         public void RemoveAll(IEnumerable<LighterNode<T>> nodes)
         {
@@ -206,7 +206,16 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
-        /// Removes all IEnumerable<LighterNode<T>> nodes from LighterList<LighterNode<T>>.        
+        /// Removes the first matching nodes that countain the specified values.        
+        /// </summary>
+        public void RemoveAll(IEnumerable<T> values)
+        {
+            foreach (var value in values)
+                Remove(value);
+        }
+
+        /// <summary>
+        /// Removes all nodes from LighterList<LighterNode<T>>.        
         /// </summary>
         public void RemoveAll()
         {
@@ -214,7 +223,7 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
-        /// Removes last LighterNode<T> from LighterList<LighterNode<T>>.        
+        /// Removes last node from LighterList<LighterNode<T>>.        
         /// </summary>
         public void RemoveTail()
         {

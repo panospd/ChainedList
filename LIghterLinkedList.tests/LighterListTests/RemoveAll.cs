@@ -21,6 +21,24 @@ namespace LIghterLinkedList.tests.LighterListTests
         }
 
         [Test]
+        public void WhenCalledWithSpecificElements_ShouldRemoveFirstMatchingNodesContainingElements()
+        {
+            var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10, 1, 4 });
+
+            sut.RemoveAll(new List<int> { 1, 4 });
+
+            var first = sut.Head;
+            var second = first.Next;
+            var third = second.Next;
+            var fourth = third.Next;
+            Assert.AreEqual(2, first.Value);
+            Assert.AreEqual(10, second.Value);
+            Assert.AreEqual(1, third.Value);
+            Assert.AreEqual(4, fourth.Value);
+            Assert.IsNull(fourth.Next);
+        }
+
+        [Test]
         public void WhenCalledWithNonConsecutiveNodes_ShouldRemoveNodes()
         {
             var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10 });
