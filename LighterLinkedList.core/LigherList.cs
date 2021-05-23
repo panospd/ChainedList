@@ -152,14 +152,23 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
-        /// Inserts element at the end of LighterList<LighterNode<T>>.        
+        /// Inserts T element at the end of LighterList<LighterNode<T>>.        
         /// </summary>
         public void Insert(T value)
         {
-            if (Tail == null)
+            if (Head == null)
                 _head = new LighterNode<T>(value);
             else
                 Tail.Next = new LighterNode<T>(value);
+        }
+
+        /// <summary>
+        /// Inserts a range pf T elements at the end of LighterList<LighterNode<T>>.        
+        /// </summary>
+        public void InsertRange(IEnumerable<T> elements)
+        {
+            foreach(var element in elements)
+                Insert(element);
         }
 
         /// <summary>
