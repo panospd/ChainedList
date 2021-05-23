@@ -22,6 +22,7 @@ namespace ChainedList.tests.ChainedListTests
             Assert.AreEqual(3, second.Value);
             Assert.AreEqual(2, third.Value);
             Assert.AreEqual(1, fourth.Value);
+            Assert.AreEqual(1, sut.Tail.Value);
             Assert.IsNull(fourth.Next);
         }
 
@@ -43,6 +44,7 @@ namespace ChainedList.tests.ChainedListTests
             sut.Reverse();
 
             Assert.AreEqual(1, sut.Head.Value);
+            Assert.AreEqual(1, sut.Tail.Value);
             Assert.IsNull(sut.Head.Next);
             Assert.IsFalse(sut.IsEmpty);
         }
