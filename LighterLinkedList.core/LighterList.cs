@@ -102,7 +102,7 @@ namespace LighterLinkedList.core
         /// <summary>
         /// Removes head LighterNode<T> from LighterList<LighterNode<T>>.        
         /// </summary>
-        public void RemoveFirst()
+        public void RemoveHead()
         {
             if (_head == null)
                 return;
@@ -148,7 +148,7 @@ namespace LighterLinkedList.core
         /// <summary>
         /// Removes last LighterNode<T> from LighterList<LighterNode<T>>.        
         /// </summary>
-        public void RemoveLast()
+        public void RemoveTail()
         {
             RemoveNode(Tail);
         }
@@ -162,7 +162,7 @@ namespace LighterLinkedList.core
 
             if (previous == null)
             {
-                RemoveFirst();
+                RemoveHead();
                 return;
             }
 

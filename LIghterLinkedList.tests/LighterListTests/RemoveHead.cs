@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 namespace LIghterLinkedList.tests.LighterListTests
 {
-    public class RemoveFirst
+    public class RemoveHead
     {
         [Test]
         public void WhenCalled_ShouldRemoveHead()
         {
             var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10 });
 
-            sut.RemoveFirst();
+            sut.RemoveHead();
 
             var first = sut.Head;
             var second = first.Next;
@@ -27,7 +27,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         {
             var sut = new LighterList<int>(new List<int> { 1 });
 
-            sut.RemoveFirst();
+            sut.RemoveHead();
 
             Assert.IsTrue(sut.IsEmpty);
         }

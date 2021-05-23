@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 namespace LIghterLinkedList.tests.LighterListTests
 {
-    public class RemoveLast
+    public class RemoveTail
     {
         [Test]
         public void WhenCalled_ShouldRemoveLastNode()
         {
             var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10 });
 
-            sut.RemoveLast();
+            sut.RemoveTail();
 
             var first = sut.Head;
             var second = first.Next;
@@ -27,7 +27,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         {
             var sut = new LighterList<int>();
 
-            sut.RemoveLast();
+            sut.RemoveTail();
 
             Assert.IsNull(sut.Head);
         }
@@ -37,7 +37,7 @@ namespace LIghterLinkedList.tests.LighterListTests
         {
             var sut = new LighterList<int>(new List<int> { 1 });
 
-            sut.RemoveLast();
+            sut.RemoveTail();
 
             Assert.IsTrue(sut.IsEmpty);
         }
