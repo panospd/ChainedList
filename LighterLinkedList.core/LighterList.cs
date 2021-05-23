@@ -49,7 +49,30 @@ namespace LighterLinkedList.core
         public bool IsEmpty => _head == null;
 
         /// <summary>
-        /// Finds the last LighterNode<T>.
+        /// Returns the nodes Count.
+        /// </summary>
+        public int Count
+        {
+            get
+            {
+                if (_head == null)
+                    return default;
+
+                var current = _head;
+                int count = 1;
+
+                while (current.Next != null)
+                {
+                    current = current.Next;
+                    count += 1;
+                }
+
+                return count;
+            }
+        }
+
+        /// <summary>
+        /// Returns the last node.
         /// </summary>
         public LighterNode<T> Tail { 
             get 
