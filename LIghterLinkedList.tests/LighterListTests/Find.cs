@@ -1,11 +1,10 @@
 ﻿using LighterLinkedList.core;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 
 namespace LIghterLinkedList.tests.LighterListTests
 {
-    public class Find
+    public partial class Find
     {
         [Test]
         public void WhenCalled_ReturnsFirstMatch()
@@ -123,29 +122,6 @@ namespace LIghterLinkedList.tests.LighterListTests
             var result = sut.Find(new Person(5, "a", "b"));
 
             Assert.IsNull(result);
-        }
-
-        public class StrongPerson : Person
-        {
-            public StrongPerson(int id, string name, string surname)
-                :base(id, name, surname)
-            {
-            }
-
-            public override bool Equals(object obj)
-            {
-                return Equals(obj as StrongPerson);
-            }
-
-            private bool Equals(StrongPerson other)
-            {
-                return other != null && Id == other.Id;
-            }
-
-            public override int GetHashCode()
-            {
-                return HashCode.Combine(Id, Name, Surname);
-            }
         }
     }
 }
