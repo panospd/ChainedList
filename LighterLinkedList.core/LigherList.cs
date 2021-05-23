@@ -247,6 +247,13 @@ namespace LighterLinkedList.core
             }
 
             var previous = FindPreviousOf(target);
+
+            if(previous == null)
+            {
+                InsertAtStart(element);
+                return;
+            }
+
             InsertElementAfter(element, previous);
         }
 

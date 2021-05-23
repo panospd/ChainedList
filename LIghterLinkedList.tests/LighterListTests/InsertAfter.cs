@@ -89,5 +89,23 @@ namespace LIghterLinkedList.tests.LighterListTests
             Assert.AreEqual(fourth.Value, 10);
             Assert.IsNull(fourth.Next);
         }
+
+        [Test]
+        public void WhenCalledWithTailNode_ShouldInsertItemAtEnd()
+        {
+            var sut = new LigherList<int>(new List<int> { 1, 2, 4 });
+
+            sut.InsertAfter(10, sut.Tail);
+
+            var first = sut.Head;
+            var second = first.Next;
+            var third = second.Next;
+            var fourth = third.Next;
+            Assert.AreEqual(first.Value, 1);
+            Assert.AreEqual(second.Value, 2);
+            Assert.AreEqual(third.Value, 4);
+            Assert.AreEqual(fourth.Value, 10);
+            Assert.IsNull(fourth.Next);
+        }
     }
 }

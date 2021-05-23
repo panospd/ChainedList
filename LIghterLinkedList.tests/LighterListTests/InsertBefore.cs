@@ -90,5 +90,23 @@ namespace LIghterLinkedList.tests.LighterListTests
             Assert.AreEqual(fourth.Value, 10);
             Assert.IsNull(fourth.Next);
         }
+
+        [Test]
+        public void WhenCalledWithHead_ShouldInsertItemAtStart()
+        {
+            var sut = new LigherList<int>(new List<int> { 1, 2, 4 });
+
+            sut.InsertBefore(10, sut.Head);
+
+            var first = sut.Head;
+            var second = first.Next;
+            var third = second.Next;
+            var fourth = third.Next;
+            Assert.AreEqual(first.Value, 10);
+            Assert.AreEqual(second.Value, 1);
+            Assert.AreEqual(third.Value, 2);
+            Assert.AreEqual(fourth.Value, 4);
+            Assert.IsNull(fourth.Next);
+        }
     }
 }
