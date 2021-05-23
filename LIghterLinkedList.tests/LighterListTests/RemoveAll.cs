@@ -102,6 +102,23 @@ namespace LIghterLinkedList.tests.LighterListTests
         }
 
         [Test]
+        public void WhenCalledWithElementPredicateAndMatchingNodesAreConsecutive_ShouldRemoveAllMatchingNodes()
+        {
+            var sut = new LighterList<int>(new List<int> { 1, 2, 4, 10, 1, 4 });
+
+            sut.RemoveAll(v => v == 1 || v == 2);
+
+            Assert.AreEqual(3, sut.Count);
+            var first = sut.Head;
+            var second = first.Next;
+            var third = second.Next;
+            Assert.AreEqual(4, first.Value);
+            Assert.AreEqual(10, second.Value);
+            Assert.AreEqual(4, third.Value);
+            Assert.IsNull(third.Next);
+        }
+
+        [Test]
         public void WhenCalledWithElementPredicateAndNoMatch_ShouldNotRemoveAnyElement()
         {
             var sut = new LighterList<int>(new List<int> { 2, 10 });
