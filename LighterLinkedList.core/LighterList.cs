@@ -39,17 +39,17 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
-        /// Finds the head LighterNode<T>.
+        /// Returns the head(first) node.
         /// </summary>
         public LighterNode<T> Head => _head;
 
         /// <summary>
-        /// True if LighterList<LighterNode<T>> is empty
+        /// Returns true if list is empty
         /// </summary>
         public bool IsEmpty => _head == null;
 
         /// <summary>
-        /// Returns the nodes Count.
+        /// Returns the nodes count.
         /// </summary>
         public int Count
         {
@@ -72,7 +72,7 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
-        /// Returns the last node.
+        /// Returns the tail(last) node.
         /// </summary>
         public LighterNode<T> Tail { 
             get 
@@ -92,7 +92,7 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
-        /// True if List contains any nodes
+        /// Returns true if List is not empty.
         /// </summary>
         public bool Any()
         {
@@ -136,7 +136,7 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
-        /// Finds the first node based that contains the specified value.
+        /// Finds the first node that contains the specified value.
         /// </summary>
         public LighterNode<T> Find(T value)
         {
@@ -154,7 +154,7 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
-        /// Inserts element as the head of LighterList<LighterNode<T>>.        
+        /// Inserts value as the head(first) node.        
         /// </summary>
         public void InsertAtStart(T value)
         {
@@ -167,7 +167,7 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
-        /// Removes head LighterNode<T> from LighterList<LighterNode<T>>.        
+        /// Removes head(first) node.        
         /// </summary>
         public void RemoveHead()
         {
@@ -178,7 +178,7 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
-        /// Removes first matching LighterNode<T> from LighterList<LighterNode<T>>.        
+        /// Removes first matching node based on predicate.        
         /// </summary>
         public void Remove(Func<LighterNode<T>, bool> predicate)
         {
@@ -187,7 +187,7 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
-        /// Removes specified LighterNode<T> node from LighterList<LighterNode<T>>.        
+        /// Removes specified node.        
         /// </summary>
         public void Remove(LighterNode<T> node)
         {
@@ -196,7 +196,7 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
-        /// Removes the first node that contains specified value.        
+        /// Removes first node that contains specified value.        
         /// </summary>
         public void Remove(T value)
         {
@@ -205,7 +205,7 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
-        /// Removes specified  nodes from LighterList<LighterNode<T>>.        
+        /// Removes all specified nodes.        
         /// </summary>
         public void RemoveAll(IEnumerable<LighterNode<T>> nodes)
         {
@@ -223,7 +223,7 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
-        /// Removes all matching nodes.        
+        /// Removes all matching nodes based on specified predicate.        
         /// </summary>
         public void RemoveAll(Func<T, bool> predicate)
         {
@@ -233,24 +233,8 @@ namespace LighterLinkedList.core
                 Remove(node);
         }
 
-        public IEnumerable<LighterNode<T>> FindAll(Func<T, bool> predicate)
-        {
-            var results = new List<LighterNode<T>>();
-            var current = _head;
-
-            while (current != null)
-            {
-                if (predicate(current.Value))
-                    results.Add(current);
-
-                current = current.Next;
-            }
-
-            return results;
-        }
-
         /// <summary>
-        /// Removes all nodes from LighterList<LighterNode<T>>.        
+        /// Removes all nodes from list.        
         /// </summary>
         public void RemoveAll()
         {
@@ -258,31 +242,15 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
-        /// Removes last node from LighterList<LighterNode<T>>.        
+        /// Removes tail(last) node in the list.        
         /// </summary>
         public void RemoveTail()
         {
             RemoveNode(Tail);
         }
 
-        private void RemoveNode(LighterNode<T> target)
-        {
-            if (target == null)
-                return;
-
-            var previous = FindPreviousOf(target);
-
-            if (previous == null)
-            {
-                RemoveHead();
-                return;
-            }
-
-            previous.Next = target.Next;
-        }
-
         /// <summary>
-        /// Inserts T element at the end of LighterList<LighterNode<T>>.        
+        /// Inserts value at the end of list.    
         /// </summary>
         public void Insert(T value)
         {
@@ -293,92 +261,92 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
-        /// Inserts a range pf T elements at the end of LighterList<LighterNode<T>>.        
+        /// Inserts values at the end of list and in the order specified.        
         /// </summary>
-        public void InsertRange(IEnumerable<T> elements)
+        public void InsertRange(IEnumerable<T> values)
         {
-            foreach(var element in elements)
-                Insert(element);
+            foreach(var value in values)
+                Insert(value);
         }
 
         /// <summary>
-        /// Inserts element after matching LighterNode<T> in LighterList<LighterNode<T>>. 
-        /// If no matching LighterNode<T> found, will insert at the end of LighterList<LighterNode<T>>   
+        /// Inserts value after first matching node based on predicate. 
+        /// If no matching node found, will insert at the end of list   
         /// </summary>
-        public void InsertAfter(Func<LighterNode<T>, bool> predicate, T element)
+        public void InsertAfter(Func<LighterNode<T>, bool> predicate, T value)
         {
             var target= Find(predicate);
-            InsertElementAfter(element, target);
+            InsertValueAfter(target, value);
         }
 
         /// <summary>
-        /// Inserts element after specified LighterNode<T> in LighterList<LighterNode<T>>. 
-        /// If no matching LighterNode<T> found, will insert at the end of LighterList<LighterNode<T>>   
+        /// Inserts value after specified node. 
+        /// If no matching node found, will insert at the end of list.   
         /// </summary>
-        public void InsertAfter(LighterNode<T> node, T element)
+        public void InsertAfter(LighterNode<T> node, T value)
         {
             var target = FindReferenceOf(node);
-            InsertElementAfter(element, target);
+            InsertValueAfter(target, value);
         }
 
         /// <summary>
-        /// Inserts IEnumerable<T> elements after specified LighterNode<T> in LighterList<LighterNode<T>>. 
-        /// If no matching LighterNode<T> found, will insert at the end of LighterList<LighterNode<T>>   
+        /// Inserts values after specified node. 
+        /// If no matching node found, will insert at the end of list.
         /// </summary>
-        public void InsertRangeAfter(LighterNode<T> node, IEnumerable<T> elements)
+        public void InsertRangeAfter(LighterNode<T> node, IEnumerable<T> values)
         {
             var target = FindReferenceOf(node);
-            InsertElementsAfter(target, elements);
+            InsertValuesAfter(target, values);
         }
 
         /// <summary>
-        /// Inserts IEnumerable<T> elements after matching LighterNode<T> in LighterList<LighterNode<T>>. 
-        /// If no matching LighterNode<T> found, will insert at the end of LighterList<LighterNode<T>>   
+        /// Inserts values after first matching node based on predicate. 
+        /// If no matching matching node found, will insert at the end of list.   
         /// </summary>
-        public void InsertRangeAfter(Func<LighterNode<T>, bool> predicate, IEnumerable<T> elements)
+        public void InsertRangeAfter(Func<LighterNode<T>, bool> predicate, IEnumerable<T> values)
         {
             var target = Find(predicate);
-            InsertElementsAfter(target, elements);
+            InsertValuesAfter(target, values);
         }
 
         /// <summary>
-        /// Inserts element before matching LighterNode<T> in LighterList<LighterNode<T>>. 
-        /// If no matching LighterNode<T> found, will insert at the end of LighterList<LighterNode<T>>   
+        /// Inserts value before first matching node based on predicate. 
+        /// If no matching node found, will insert at the end of list.   
         /// </summary>
-        public void InsertBefore(Func<LighterNode<T>, bool> predicate, T element)
+        public void InsertBefore(Func<LighterNode<T>, bool> predicate, T value)
         {
             var target = Find(predicate);
-            InsertElementBefore(element, target);
+            InsertValueBefore(target, value);
         }
 
         /// <summary>
-        /// Inserts T element before specified LighterNode<T> in LighterList<LighterNode<T>>. 
-        /// If no matching LighterNode<T> found, will insert at the end of LighterList<LighterNode<T>>   
+        /// Inserts value before specified node. 
+        /// If no matching node found, will insert at the end of list.   
         /// </summary>
-        public void InsertBefore(LighterNode<T> node, T element)
+        public void InsertBefore(LighterNode<T> node, T value)
         {
             var target = FindReferenceOf(node);
-            InsertElementBefore(element, target);
+            InsertValueBefore(target, value);
         }
 
         /// <summary>
-        /// Inserts IEnumerable<T> elements before specified LighterNode<T> in LighterList<LighterNode<T>>. 
-        /// If no matching LighterNode<T> found, will insert at the end of LighterList<LighterNode<T>>   
+        /// Inserts values before specified node. 
+        /// If no matching node found, will insert at the end of list.   
         /// </summary>
-        public void InsertRangeBefore(LighterNode<T> node, IEnumerable<T> elements)
+        public void InsertRangeBefore(LighterNode<T> node, IEnumerable<T> values)
         {
             var target = FindReferenceOf(node);
-            InsertElementsBefore(target, elements);
+            InsertValuesBefore(target, values);
         }
 
         /// <summary>
-        /// Inserts IEnumerable<T> elements before matching LighterNode<T> in LighterList<LighterNode<T>>. 
-        /// If no matching LighterNode<T> found, will insert at the end of LighterList<LighterNode<T>>   
+        /// Inserts values before first matching node based on predicate. 
+        /// If no matching node found, will insert at the end of list  
         /// </summary>
-        public void InsertRangeBefore(Func<LighterNode<T>, bool> predicate, IEnumerable<T> elements)
+        public void InsertRangeBefore(Func<LighterNode<T>, bool> predicate, IEnumerable<T> values)
         {
             var target = Find(predicate);
-            InsertElementsBefore(target, elements);
+            InsertValuesBefore(target, values);
         }
 
         /// <summary>
@@ -400,7 +368,7 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
-        /// Returns a List<T> of all LighterNode<T> nodes
+        /// Returns a List<T> containing the values from all nodes
         /// </summary>
         public List<T> ToList()
         {
@@ -417,29 +385,45 @@ namespace LighterLinkedList.core
             return flatList;
         }
 
-        private void InsertElementsBefore(LighterNode<T> target, IEnumerable<T> elements)
+        private void RemoveNode(LighterNode<T> target)
         {
-            var elementsList = elements.ToList();
+            if (target == null)
+                return;
 
-            for (int i = elementsList.Count - 1; i > -1; i--)
+            var previous = FindPreviousOf(target);
+
+            if (previous == null)
             {
-                target = InsertElementBefore(elementsList[i], target);
+                RemoveHead();
+                return;
+            }
+
+            previous.Next = target.Next;
+        }
+
+        private void InsertValuesBefore(LighterNode<T> target, IEnumerable<T> values)
+        {
+            var valuesList = values.ToList();
+
+            for (int i = valuesList.Count - 1; i > -1; i--)
+            {
+                target = InsertValueBefore(target, valuesList[i]);
             }
         }
 
-        private void InsertElementsAfter(LighterNode<T> target, IEnumerable<T> elements)
+        private void InsertValuesAfter(LighterNode<T> target, IEnumerable<T> values)
         {
-            foreach (var element in elements)
+            foreach (var value in values)
             {
-                target = InsertElementAfter(element, target);
+                target = InsertValueAfter(target, value);
             }
         }
 
-        private LighterNode<T> InsertElementBefore(T element, LighterNode<T> target)
+        private LighterNode<T> InsertValueBefore(LighterNode<T> target, T value)
         {
             if (target == null)
             {
-                Insert(element);
+                Insert(value);
                 return Tail;
             }
 
@@ -447,26 +431,42 @@ namespace LighterLinkedList.core
 
             if(previous == null)
             {
-                InsertAtStart(element);
+                InsertAtStart(value);
                 return Head;
             }
 
-            return InsertElementAfter(element, previous);
+            return InsertValueAfter(previous, value);
         }
 
-        private LighterNode<T> InsertElementAfter(T element, LighterNode<T> target)
+        private LighterNode<T> InsertValueAfter(LighterNode<T> target, T value)
         {
             if (target == null)
             {
-                Insert(element);
+                Insert(value);
                 return Tail;
             }
 
             var originalNext = target.Next;
-            target.Next = new LighterNode<T>(element);
+            target.Next = new LighterNode<T>(value);
             target.Next.Next = originalNext;
 
             return target.Next;
+        }
+
+        private IEnumerable<LighterNode<T>> FindAll(Func<T, bool> predicate)
+        {
+            var results = new List<LighterNode<T>>();
+            var current = _head;
+
+            while (current != null)
+            {
+                if (predicate(current.Value))
+                    results.Add(current);
+
+                current = current.Next;
+            }
+
+            return results;
         }
 
         private LighterNode<T> FindReferenceOf(LighterNode<T> node)
