@@ -182,13 +182,41 @@ namespace LighterLinkedList.core
         }
 
         /// <summary>
-        /// Inserts element after matching LighterNode<T> in LighterList<LighterNode<T>>. 
+        /// Inserts element after specified LighterNode<T> in LighterList<LighterNode<T>>. 
         /// If no matching LighterNode<T> found, will insert at the end of LighterList<LighterNode<T>>   
         /// </summary>
         public void InsertAfter(T element, LighterNode<T> node)
         {
             var target = FindReferenceOf(node);
             InsertElementAfter(element, target);
+        }
+
+        /// <summary>
+        /// Inserts IEnumerable<T> elements after specified LighterNode<T> in LighterList<LighterNode<T>>. 
+        /// If no matching LighterNode<T> found, will insert at the end of LighterList<LighterNode<T>>   
+        /// </summary>
+        public void InsertRangeAfter(IEnumerable<T> elements, LighterNode<T> node)
+        {
+            var target = FindReferenceOf(node);
+            InsertElementsAfter(elements, target);
+        }
+
+        /// <summary>
+        /// Inserts IEnumerable<T> elements after matching LighterNode<T> in LighterList<LighterNode<T>>. 
+        /// If no matching LighterNode<T> found, will insert at the end of LighterList<LighterNode<T>>   
+        /// </summary>
+        public void InsertRangeAfter(IEnumerable<T> elements, Func<LighterNode<T>, bool> predicate)
+        {
+            var target = Find(predicate);
+            InsertElementsAfter(elements, target);
+        }
+
+        private void InsertElementsAfter(IEnumerable<T> elements, LighterNode<T> target)
+        {
+            foreach (var element in elements)
+            {
+                target = InsertElementAfter(element, target);
+            }
         }
 
         /// <summary>
@@ -266,17 +294,19 @@ namespace LighterLinkedList.core
             InsertElementAfter(element, previous);
         }
 
-        private void InsertElementAfter(T element, LighterNode<T> target)
+        private LighterNode<T> InsertElementAfter(T element, LighterNode<T> target)
         {
             if (target == null)
             {
                 Insert(element);
-                return;
+                return Tail;
             }
 
             var originalNext = target.Next;
             target.Next = new LighterNode<T>(element);
             target.Next.Next = originalNext;
+
+            return target.Next;
         }
 
         private LighterNode<T> FindReferenceOf(LighterNode<T> node)
