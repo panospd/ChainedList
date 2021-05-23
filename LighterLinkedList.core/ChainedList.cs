@@ -385,6 +385,21 @@ namespace ChainedList.core
             return flatList;
         }
 
+        /// <summary>
+        /// Reverses nodes order in the list
+        /// </summary>
+        public void Reverse()
+        {
+            if (Count < 2) return;
+
+            var values = ToList();
+            values.Reverse();
+
+            RemoveAll();
+
+            InsertRange(values);
+        }
+
         private void RemoveNode(ChainedNode<T> target)
         {
             if (target == null)
