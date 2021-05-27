@@ -4,31 +4,25 @@ using System.Collections.Generic;
 
 namespace ChainedList.tests.ChainedListTests
 {
-    public class InsertRange
+    public class Add
     {
         [Test]
-        public void WhenListIsEmpty_ShouldInsertItems()
+        public void WhenListIsEmpty_ShouldInsertItem()
         {
             var sut = new ChainedList<int>();
 
-            sut.InsertRange(new List<int> { 1, 10, 19 });
+            sut.Add(10);
 
-            var first = sut.Head;
-            var second = first.Next;
-            var third = second.Next;
-
-            Assert.AreEqual(1, first.Value);
-            Assert.AreEqual(10, second.Value);
-            Assert.AreEqual(19, third.Value);
-            Assert.IsNull(third.Next);
+            Assert.AreEqual(10, sut.Head.Value);
+            Assert.IsNull(sut.Head.Next);
         }
 
         [Test]
-        public void WhenCalled_ShouldInsertItemsAtEnd()
+        public void WhenCalled_ShouldInsertItemAtEnd()
         {
-            var sut = new ChainedList<int>(new List<int> { 1, 2 });
+            var sut = new ChainedList<int>(new List<int> { 1, 2, 4 });
 
-            sut.InsertRange(new List<int> { 4, 10 });
+            sut.Add(10);
 
             var first = sut.Head;
             var second = first.Next;

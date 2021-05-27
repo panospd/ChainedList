@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 namespace ChainedList.tests.ChainedListTests
 {
-    public class InsertRangeAfter
+    public class AddRangeAfter
     {
         [Test]
         public void WhenListIsEmpty_ShouldInsertItems()
         {
             var sut = new ChainedList<int>();
 
-            sut.InsertRangeAfter(sut.Head, new List<int> { 1, 10, 19 });
+            sut.AddRangeAfter(sut.Head, new List<int> { 1, 10, 19 });
 
             var first = sut.Head;
             var second = first.Next;
@@ -27,7 +27,7 @@ namespace ChainedList.tests.ChainedListTests
         {
             var sut = new ChainedList<int>();
 
-            sut.InsertRangeAfter(node => node == sut.Head, new List<int> { 1, 10, 19 });
+            sut.AddRangeAfter(node => node == sut.Head, new List<int> { 1, 10, 19 });
 
             var first = sut.Head;
             var second = first.Next;
@@ -43,7 +43,7 @@ namespace ChainedList.tests.ChainedListTests
         {
             var sut = new ChainedList<int>(new List<int> { 1, 2 });
 
-            sut.InsertRangeAfter(sut.Head, new List<int> { 4, 10 });
+            sut.AddRangeAfter(sut.Head, new List<int> { 4, 10 });
 
             var first = sut.Head;
             var second = first.Next;
@@ -61,7 +61,7 @@ namespace ChainedList.tests.ChainedListTests
         {
             var sut = new ChainedList<int>(new List<int> { 1, 2 });
 
-            sut.InsertRangeAfter(n => n.Value == 1, new List<int> { 4, 10 });
+            sut.AddRangeAfter(n => n.Value == 1, new List<int> { 4, 10 });
 
             var first = sut.Head;
             var second = first.Next;

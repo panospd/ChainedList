@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 namespace ChainedList.tests.ChainedListTests
 {
-    public class InsertAtStart
+    public class AddAtStart
     {
         [Test]
         public void WhenCalled_ShouldInsertItemAtStart()
         {
             var sut = new ChainedList<int>(new List<int> { 1, 2, 4 });
 
-            sut.InsertAtStart(10);
+            sut.AddAtStart(10);
 
             var first = sut.Head;
             var second = first.Next;
@@ -29,7 +29,7 @@ namespace ChainedList.tests.ChainedListTests
         {
             var sut = new ChainedList<int>();
 
-            sut.InsertAtStart(10);
+            sut.AddAtStart(10);
 
             Assert.AreEqual(10, sut.Head.Value);
             Assert.IsNull(sut.Head.Next);

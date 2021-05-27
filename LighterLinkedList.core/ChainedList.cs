@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ChainedList.core
 {
-    public class ChainedList<T>
+    public class ChainedList<T> : ICollection<T>, IEnumerable<T>
     {
         private ChainedNode<T> _head = null;
 
@@ -91,6 +91,8 @@ namespace ChainedList.core
             } 
         }
 
+        public bool IsReadOnly => false;
+
         /// <summary>
         /// Returns true if List is not empty.
         /// </summary>
@@ -118,27 +120,9 @@ namespace ChainedList.core
         }
 
         /// <summary>
-        /// Finds the first node that matches predicate.
-        /// </summary>
-        public ChainedNode<T> Find(Func<T, bool> predicate)
-        {
-            var current = _head;
-
-            while (current != null)
-            {
-                if (predicate(current.Value))
-                    return current;
-
-                current = current.Next;
-            }
-
-            return null;
-        }
-
-        /// <summary>
         /// Finds the first node that contains the specified value.
         /// </summary>
-        public ChainedNode<T> Find(T value)
+        public ChainedNode<T> NodeOf(T value)
         {
             var current = _head;
 
@@ -156,7 +140,7 @@ namespace ChainedList.core
         /// <summary>
         /// Inserts value as the head(first) node.        
         /// </summary>
-        public void InsertAtStart(T value)
+        public void AddAtStart(T value)
         {
             var current = _head;
 
@@ -183,25 +167,22 @@ namespace ChainedList.core
         public void Remove(Func<ChainedNode<T>, bool> predicate)
         {
             var target = Find(predicate);
-            RemoveNode(target);
+            Remove(target);
         }
 
         /// <summary>
         /// Removes specified node.        
         /// </summary>
-        public void Remove(ChainedNode<T> node)
+        public bool Remove(ChainedNode<T> node)
         {
             var target = FindReferenceOf(node);
-            RemoveNode(target);
+            return RemoveNode(target);
         }
 
-        /// <summary>
-        /// Removes first node that contains specified value.        
-        /// </summary>
-        public void Remove(T value)
+        public bool Remove(T item)
         {
-            var target = Find(value);
-            RemoveNode(target);
+            var target = NodeOf(item);
+            return Remove(target);
         }
 
         /// <summary>
@@ -227,18 +208,10 @@ namespace ChainedList.core
         /// </summary>
         public void RemoveAll(Func<T, bool> predicate)
         {
-            var nodesToDelete = FindAll(predicate);
+            var nodesToDelete = this.Where(predicate);
 
             foreach (var node in nodesToDelete)
                 Remove(node);
-        }
-
-        /// <summary>
-        /// Removes all nodes from list.        
-        /// </summary>
-        public void RemoveAll()
-        {
-            _head = null;
         }
 
         /// <summary>
@@ -250,30 +223,19 @@ namespace ChainedList.core
         }
 
         /// <summary>
-        /// Inserts value at the end of list.    
-        /// </summary>
-        public void Insert(T value)
-        {
-            if (Head == null)
-                _head = new ChainedNode<T>(value);
-            else
-                Tail.Next = new ChainedNode<T>(value);
-        }
-
-        /// <summary>
         /// Inserts values at the end of list and in the order specified.        
         /// </summary>
-        public void InsertRange(IEnumerable<T> values)
+        public void AddRange(IEnumerable<T> values)
         {
             foreach(var value in values)
-                Insert(value);
+                Add(value);
         }
 
         /// <summary>
         /// Inserts value after first matching node based on predicate. 
         /// If no matching node found, will insert at the end of list   
         /// </summary>
-        public void InsertAfter(Func<ChainedNode<T>, bool> predicate, T value)
+        public void AddAfter(Func<ChainedNode<T>, bool> predicate, T value)
         {
             var target= Find(predicate);
             InsertValueAfter(target, value);
@@ -283,7 +245,7 @@ namespace ChainedList.core
         /// Inserts value after specified node. 
         /// If no matching node found, will insert at the end of list.   
         /// </summary>
-        public void InsertAfter(ChainedNode<T> node, T value)
+        public void AddAfter(ChainedNode<T> node, T value)
         {
             var target = FindReferenceOf(node);
             InsertValueAfter(target, value);
@@ -293,7 +255,7 @@ namespace ChainedList.core
         /// Inserts values after specified node. 
         /// If no matching node found, will insert at the end of list.
         /// </summary>
-        public void InsertRangeAfter(ChainedNode<T> node, IEnumerable<T> values)
+        public void AddRangeAfter(ChainedNode<T> node, IEnumerable<T> values)
         {
             var target = FindReferenceOf(node);
             InsertValuesAfter(target, values);
@@ -303,7 +265,7 @@ namespace ChainedList.core
         /// Inserts values after first matching node based on predicate. 
         /// If no matching matching node found, will insert at the end of list.   
         /// </summary>
-        public void InsertRangeAfter(Func<ChainedNode<T>, bool> predicate, IEnumerable<T> values)
+        public void AddRangeAfter(Func<ChainedNode<T>, bool> predicate, IEnumerable<T> values)
         {
             var target = Find(predicate);
             InsertValuesAfter(target, values);
@@ -313,7 +275,7 @@ namespace ChainedList.core
         /// Inserts value before first matching node based on predicate. 
         /// If no matching node found, will insert at the end of list.   
         /// </summary>
-        public void InsertBefore(Func<ChainedNode<T>, bool> predicate, T value)
+        public void AddBefore(Func<ChainedNode<T>, bool> predicate, T value)
         {
             var target = Find(predicate);
             InsertValueBefore(target, value);
@@ -323,7 +285,7 @@ namespace ChainedList.core
         /// Inserts value before specified node. 
         /// If no matching node found, will insert at the end of list.   
         /// </summary>
-        public void InsertBefore(ChainedNode<T> node, T value)
+        public void AddBefore(ChainedNode<T> node, T value)
         {
             var target = FindReferenceOf(node);
             InsertValueBefore(target, value);
@@ -333,7 +295,7 @@ namespace ChainedList.core
         /// Inserts values before specified node. 
         /// If no matching node found, will insert at the end of list.   
         /// </summary>
-        public void InsertRangeBefore(ChainedNode<T> node, IEnumerable<T> values)
+        public void AddRangeBefore(ChainedNode<T> node, IEnumerable<T> values)
         {
             var target = FindReferenceOf(node);
             InsertValuesBefore(target, values);
@@ -343,7 +305,7 @@ namespace ChainedList.core
         /// Inserts values before first matching node based on predicate. 
         /// If no matching node found, will insert at the end of list  
         /// </summary>
-        public void InsertRangeBefore(Func<ChainedNode<T>, bool> predicate, IEnumerable<T> values)
+        public void AddRangeBefore(Func<ChainedNode<T>, bool> predicate, IEnumerable<T> values)
         {
             var target = Find(predicate);
             InsertValuesBefore(target, values);
@@ -368,52 +330,35 @@ namespace ChainedList.core
         }
 
         /// <summary>
-        /// Returns a List<T> containing the values from all nodes
-        /// </summary>
-        public List<T> ToList()
-        {
-            var flatList = new List<T>();
-
-            var current = Head;
-
-            while (current != null)
-            {
-                flatList.Add(current.Value);
-                current = current.Next;
-            }
-
-            return flatList;
-        }
-
-        /// <summary>
         /// Reverses nodes order in the list
         /// </summary>
         public void Reverse()
         {
             if (Count < 2) return;
 
-            var values = ToList();
+            var values = this.ToList();
             values.Reverse();
 
-            RemoveAll();
+            Clear();
 
-            InsertRange(values);
+            AddRange(values);
         }
 
-        private void RemoveNode(ChainedNode<T> target)
+        private bool RemoveNode(ChainedNode<T> target)
         {
             if (target == null)
-                return;
+                return false;
 
             var previous = FindPreviousOf(target);
 
             if (previous == null)
             {
                 RemoveHead();
-                return;
+                return true;
             }
 
             previous.Next = target.Next;
+            return true;
         }
 
         private void InsertValuesBefore(ChainedNode<T> target, IEnumerable<T> values)
@@ -438,7 +383,7 @@ namespace ChainedList.core
         {
             if (target == null)
             {
-                Insert(value);
+                Add(value);
                 return Tail;
             }
 
@@ -446,7 +391,7 @@ namespace ChainedList.core
 
             if(previous == null)
             {
-                InsertAtStart(value);
+                AddAtStart(value);
                 return Head;
             }
 
@@ -457,7 +402,7 @@ namespace ChainedList.core
         {
             if (target == null)
             {
-                Insert(value);
+                Add(value);
                 return Tail;
             }
 
@@ -466,22 +411,6 @@ namespace ChainedList.core
             target.Next.Next = originalNext;
 
             return target.Next;
-        }
-
-        private IEnumerable<ChainedNode<T>> FindAll(Func<T, bool> predicate)
-        {
-            var results = new List<ChainedNode<T>>();
-            var current = _head;
-
-            while (current != null)
-            {
-                if (predicate(current.Value))
-                    results.Add(current);
-
-                current = current.Next;
-            }
-
-            return results;
         }
 
         private ChainedNode<T> FindReferenceOf(ChainedNode<T> node)
@@ -513,5 +442,50 @@ namespace ChainedList.core
 
             return null;
         }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            var current = Head;
+
+            while(current != null)
+            {
+                yield return current.Value;
+                current = current.Next;
+            }
+        }
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
+
+        public void Add(T item)
+        {
+            if (Head == null)
+                _head = new ChainedNode<T>(item);
+            else
+                Tail.Next = new ChainedNode<T>(item);
+        }
+
+        public void Clear()
+        {
+            _head = null;
+        }
+
+        public bool Contains(T item)
+        {
+            return NodeOf(item) != null;
+        }
+
+        public void CopyTo(T[] array, int arrayIndex)
+        {
+            foreach(var item in this)
+            {
+                array.SetValue(item, arrayIndex);
+                arrayIndex += 1;
+            }
+        }
+
+        
     }
 }

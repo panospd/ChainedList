@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 namespace ChainedList.tests.ChainedListTests
 {
-    public class InsertRangeBefore
+    public class AddRangeBefore
     {
         [Test]
         public void WhenCalled_ShouldInsertItemBeforeSpecifiedNode()
         {
             var sut = new ChainedList<int>(new List<int> { 1, 2, 4 });
 
-            sut.InsertRangeBefore(sut.Head.Next, new List<int> { 10, 11, 12 });
+            sut.AddRangeBefore(sut.Head.Next, new List<int> { 10, 11, 12 });
 
             var first = sut.Head;
             var second = first.Next;
@@ -33,7 +33,7 @@ namespace ChainedList.tests.ChainedListTests
         {
             var sut = new ChainedList<int>();
 
-            sut.InsertRangeBefore(sut.Head, new List<int> { 10, 11, 12 });
+            sut.AddRangeBefore(sut.Head, new List<int> { 10, 11, 12 });
 
             var first = sut.Head;
             var second = first.Next;
@@ -49,7 +49,7 @@ namespace ChainedList.tests.ChainedListTests
         {
             var sut = new ChainedList<int>(new List<int> { 1, 2, 4 });
 
-            sut.InsertRangeBefore(sut.Head, new List<int> { 10, 11, 12 });
+            sut.AddRangeBefore(sut.Head, new List<int> { 10, 11, 12 });
 
             var first = sut.Head;
             var second = first.Next;
@@ -71,7 +71,7 @@ namespace ChainedList.tests.ChainedListTests
         {
             var sut = new ChainedList<int>(new List<int> { 1, 2, 4 });
 
-            sut.InsertRangeBefore(n => n.Value == 2, new List<int> { 10, 11, 12 });
+            sut.AddRangeBefore(n => n.Value == 2, new List<int> { 10, 11, 12 });
 
             var first = sut.Head;
             var second = first.Next;
@@ -93,7 +93,7 @@ namespace ChainedList.tests.ChainedListTests
         {
             var sut = new ChainedList<int>();
 
-            sut.InsertRangeBefore(n => n == sut.Head, new List<int> { 10, 11, 12 });
+            sut.AddRangeBefore(n => n == sut.Head, new List<int> { 10, 11, 12 });
 
             var first = sut.Head;
             var second = first.Next;
@@ -109,7 +109,7 @@ namespace ChainedList.tests.ChainedListTests
         {
             var sut = new ChainedList<int>(new List<int> { 1, 2, 4 });
 
-            sut.InsertRangeBefore(n => n.Value == 1, new List<int> { 10, 11, 12 });
+            sut.AddRangeBefore(n => n.Value == 1, new List<int> { 10, 11, 12 });
 
             var first = sut.Head;
             var second = first.Next;

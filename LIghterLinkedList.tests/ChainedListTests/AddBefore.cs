@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 namespace ChainedList.tests.ChainedListTests
 {
-    public class InsertBefore
+    public class AddBefore
     {
         [Test]
         public void WhenCalledWithPredicate_ShouldInsertItemBeforeMatchingNode()
         {
             var sut = new ChainedList<int>(new List<int> { 1, 2, 4 });
 
-            sut.InsertBefore(node => node.Value == 2, 10);
+            sut.AddBefore(node => node.Value == 2, 10);
 
             var first = sut.Head;
             var second = first.Next;
@@ -29,7 +29,7 @@ namespace ChainedList.tests.ChainedListTests
         {
             var sut = new ChainedList<int>(new List<int> { 1, 2, 4 });
 
-            sut.InsertBefore(node => node.Value == 8, 10);
+            sut.AddBefore(node => node.Value == 8, 10);
 
             var first = sut.Head;
             var second = first.Next;
@@ -47,7 +47,7 @@ namespace ChainedList.tests.ChainedListTests
         {
             var sut = new ChainedList<int>();
 
-            sut.InsertBefore(node => node.Value == 1, 10);
+            sut.AddBefore(node => node.Value == 1, 10);
 
             var first = sut.Head;
             Assert.AreEqual(10, first.Value);
@@ -60,7 +60,7 @@ namespace ChainedList.tests.ChainedListTests
             var sut = new ChainedList<int>(new List<int> { 1, 2, 4 });
             var first = sut.Head;
 
-            sut.InsertBefore(first.Next.Next, 10);
+            sut.AddBefore(first.Next.Next, 10);
 
             var second = first.Next;
             var third = second.Next;
@@ -78,7 +78,7 @@ namespace ChainedList.tests.ChainedListTests
             var sut = new ChainedList<int>(new List<int> { 1, 2, 4 });
             var node = new ChainedNode<int>(10);
 
-            sut.InsertBefore(node, 10);
+            sut.AddBefore(node, 10);
 
             var first = sut.Head;
             var second = first.Next;
@@ -96,7 +96,7 @@ namespace ChainedList.tests.ChainedListTests
         {
             var sut = new ChainedList<int>(new List<int> { 1, 2, 4 });
 
-            sut.InsertBefore(sut.Head, 10);
+            sut.AddBefore(sut.Head, 10);
 
             var first = sut.Head;
             var second = first.Next;

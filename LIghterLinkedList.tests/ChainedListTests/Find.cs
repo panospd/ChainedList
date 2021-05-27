@@ -32,7 +32,7 @@ namespace ChainedList.tests.ChainedListTests
         {
             var sut = new ChainedList<int>(new List<int> { 1, 2, 4 });
 
-            var result = sut.Find(2);
+            var result = sut.NodeOf(2);
 
             Assert.AreEqual(2, result.Value);
             Assert.IsNotNull(result.Next);
@@ -49,45 +49,11 @@ namespace ChainedList.tests.ChainedListTests
                 new Person(4, "Ci", "Cd")
             });
 
-            var result = sut.Find(sut.Head.Next.Value);
+            var result = sut.NodeOf(sut.Head.Next.Value);
 
             Assert.AreEqual(2, result.Value.Id);
             Assert.AreEqual("Maria", result.Value.Name);
             Assert.IsNotNull(result.Next);
-        }
-
-        [Test]
-        public void WhenCalledWithObjectTElementAndPredicate_ReturnsFirstMatch()
-        {
-            var sut = new ChainedList<Person>(new List<Person>
-            {
-                new Person(1, "John", "Smith"),
-                new Person(2, "Maria", "db"),
-                new Person(3, "Docker", "Container"),
-                new Person(4, "Ci", "Cd")
-            });
-
-            var result = sut.Find(v => v.Id == 3);
-
-            Assert.AreEqual(3, result.Value.Id);
-            Assert.AreEqual("Docker", result.Value.Name);
-            Assert.IsNotNull(result.Next);
-        }
-
-        [Test]
-        public void WhenCalledWithObjectTElementAndPredicateAndNoMatch_ReturnsNull()
-        {
-            var sut = new ChainedList<Person>(new List<Person>
-            {
-                new Person(1, "John", "Smith"),
-                new Person(2, "Maria", "db"),
-                new Person(3, "Docker", "Container"),
-                new Person(4, "Ci", "Cd")
-            });
-
-            var result = sut.Find(v => v.Id == 5);
-
-            Assert.IsNull(result);
         }
 
         [Test]
@@ -101,7 +67,7 @@ namespace ChainedList.tests.ChainedListTests
                 new StrongPerson(4, "Ci", "Cd")
             });
 
-            var result = sut.Find(sut.Head.Next.Value);
+            var result = sut.NodeOf(sut.Head.Next.Value);
 
             Assert.AreEqual(2, result.Value.Id);
             Assert.AreEqual("Maria", result.Value.Name);
@@ -119,7 +85,7 @@ namespace ChainedList.tests.ChainedListTests
                 new Person(4, "Ci", "Cd")
             });
 
-            var result = sut.Find(new Person(5, "a", "b"));
+            var result = sut.NodeOf(new Person(5, "a", "b"));
 
             Assert.IsNull(result);
         }

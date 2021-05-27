@@ -1,6 +1,7 @@
 ﻿using ChainedList.core;
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ChainedList.tests.ChainedListTests
 {

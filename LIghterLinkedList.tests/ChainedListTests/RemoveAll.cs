@@ -81,7 +81,7 @@ namespace ChainedList.tests.ChainedListTests
         {
             var sut = new ChainedList<int>(new List<int> { 1, 2, 4, 10 });
 
-            sut.RemoveAll();
+            sut.Clear();
 
             Assert.IsTrue(sut.IsEmpty);
         }
